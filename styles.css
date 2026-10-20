@@ -673,10 +673,23 @@
   position:relative;
   z-index:1;
   max-width:420px;
-  margin:26px 0 36px;
+  margin:26px 0 14px;
   color:#aaa;
   font-size:14px;
   line-height:1.55;
+}
+.first-project-limit{
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  margin:0 0 32px;
+  padding:7px 9px;
+  border:1px solid rgba(215,255,0,.5);
+  color:var(--accent);
+  font-size:9px;
+  letter-spacing:1.3px;
+  line-height:1;
+  text-transform:uppercase;
 }
 .first-project-price{
   position:relative;
