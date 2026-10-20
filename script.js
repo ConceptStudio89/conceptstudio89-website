@@ -271,3 +271,51 @@ serviceDialog.addEventListener('click',event=>{
   render();
 })();
 
+
+
+/* First Project Program — development test */
+(function initFirstProjectProgram(){
+  const offerDialog=document.getElementById('first-project-dialog');
+  const offerForm=document.getElementById('first-project-form');
+  const offerClose=offerDialog?.querySelector('.first-project-close');
+  if(!offerDialog||!offerForm||!offerClose) return;
+
+  const companyInput=document.getElementById('first-project-company');
+  const showInput=document.getElementById('first-project-show');
+
+  function closeOffer(){offerDialog.close();}
+
+  offerClose.addEventListener('click',closeOffer);
+  offerDialog.addEventListener('click',event=>{
+    if(event.target!==offerDialog) return;
+    const box=offerDialog.getBoundingClientRect();
+    if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom){
+      closeOffer();
+    }
+  });
+
+  offerForm.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!offerForm.reportValidity()) return;
+
+    const company=companyInput.value.trim();
+    const show=showInput.value.trim();
+    const subject=`First Project Program - ${company} - ${show}`;
+    const body=[
+      'Hi ConceptStudio 89,',
+      '',
+      'I’m interested in the First Project Program.',
+      `Company: ${company}`,
+      `Show: ${show}`,
+      '',
+      'Please send me the next steps.'
+    ].join('\n');
+
+    window.location.href='mailto:conceptst89@gmail.com?subject='+
+      encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  });
+
+  window.setTimeout(()=>{
+    if(!offerDialog.open) offerDialog.showModal();
+  },450);
+})();
