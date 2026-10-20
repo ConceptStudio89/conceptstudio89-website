@@ -23,11 +23,11 @@ const serviceStudies={
     intro:'From exhibit strategy and visitor flow to form, graphics, materials and the final presentation-ready visual.',
     subject:'Exhibit design inquiry',
     steps:[
-      ['01','Brief + intent','Objectives, booth size, audience, program and non-negotiables define the design problem.'],
-      ['02','Spatial skeleton','Zones, circulation, sightlines and primary architectural masses establish the booth logic.'],
-      ['03','Brand integration','Graphics, hierarchy and signature forms translate the brand into a spatial language.'],
-      ['04','Material + light','Surface, color, lighting and AV direction create depth, atmosphere and visual focus.'],
-      ['05','Final visual','The approved direction is resolved into a polished image ready to communicate the concept.']
+      {no:'01',icon:'brief',title:'Brief + intent',text:'Objectives, booth size, audience, program and non-negotiables define the design problem.'},
+      {no:'02',icon:'skeleton',title:'Spatial skeleton',text:'Zones, circulation, sightlines and primary architectural masses establish the booth logic.'},
+      {no:'03',icon:'brand',title:'Brand integration',text:'Graphics, hierarchy and signature forms translate the brand into a spatial language.'},
+      {no:'04',icon:'material',title:'Material + light',text:'Surface, color, lighting and AV direction create depth, atmosphere and visual focus.'},
+      {no:'05',icon:'final',title:'Final visual',text:'The approved direction is resolved into a polished image ready to communicate the concept.'}
     ]
   },
   branded:{
@@ -37,11 +37,11 @@ const serviceStudies={
     intro:'From brand DNA to a physical environment where graphic language, architecture and experience work as one system.',
     subject:'Branded space inquiry',
     steps:[
-      ['01','Brand decode','Identity, tone, audience and key messages are translated into spatial priorities.'],
-      ['02','Experience map','Arrival, interaction, focal moments and movement establish the experience sequence.'],
-      ['03','Spatial identity','Frames, volumes, graphics and color become a recognizable three-dimensional brand system.'],
-      ['04','Atmosphere','Materials, contrast, lighting and furniture define the emotional character of the environment.'],
-      ['05','Final visual','The system is brought together in a refined image that communicates the complete branded experience.']
+      {no:'01',icon:'brief',title:'Brand decode',text:'Identity, tone, audience and key messages are translated into spatial priorities.'},
+      {no:'02',icon:'skeleton',title:'Experience map',text:'Arrival, interaction, focal moments and movement establish the experience sequence.'},
+      {no:'03',icon:'brand',title:'Spatial identity',text:'Frames, volumes, graphics and color become a recognizable three-dimensional brand system.'},
+      {no:'04',icon:'material',title:'Atmosphere',text:'Materials, contrast, lighting and furniture define the emotional character of the environment.'},
+      {no:'05',icon:'final',title:'Final visual',text:'The system is brought together in a refined image that communicates the complete branded experience.'}
     ]
   },
   interiors:{
@@ -51,11 +51,11 @@ const serviceStudies={
     intro:'From program and human scale to composition, materiality, lighting and a finished interior visualization.',
     subject:'Interior concept inquiry',
     steps:[
-      ['01','Program','Use, adjacencies, people, functional needs and atmosphere establish the interior brief.'],
-      ['02','Planning','Circulation, furniture zones, focal points and proportions organize the room.'],
-      ['03','Form + detail','Architectural elements, millwork and spatial gestures shape the character of the space.'],
-      ['04','Material + light','Texture, color temperature, daylight and artificial light create depth and comfort.'],
-      ['05','Final visual','The developed interior is resolved into a realistic image for review, presentation and decision-making.']
+      {no:'01',icon:'brief',title:'Program',text:'Use, adjacencies, people, functional needs and atmosphere establish the interior brief.'},
+      {no:'02',icon:'skeleton',title:'Planning',text:'Circulation, furniture zones, focal points and proportions organize the room.'},
+      {no:'03',icon:'brand',title:'Form + detail',text:'Architectural elements, millwork and spatial gestures shape the character of the space.'},
+      {no:'04',icon:'material',title:'Material + light',text:'Texture, color temperature, daylight and artificial light create depth and comfort.'},
+      {no:'05',icon:'final',title:'Final visual',text:'The developed interior is resolved into a realistic image for review, presentation and decision-making.'}
     ]
   }
 };
@@ -73,10 +73,11 @@ document.querySelectorAll('[data-service]').forEach(button=>{
     processImage.src=study.image;
     processImage.alt=study.title+' final concept visual';
     serviceSteps.innerHTML=study.steps.map(step=>`
-      <article class="process-step">
-        <span class="step-no">${step[0]}</span>
-        <h3>${step[1]}</h3>
-        <p>${step[2]}</p>
+      <article class="process-step" data-icon="${step.icon}">
+        <div class="process-step-icon" aria-hidden="true"></div>
+        <span class="step-no">${step.no}</span>
+        <h3>${step.title}</h3>
+        <p>${step.text}</p>
       </article>
     `).join('');
     document.getElementById('service-process-contact').href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent(study.subject);
