@@ -196,10 +196,11 @@ serviceDialog.addEventListener('click',event=>{
     const sectionRect=section.getBoundingClientRect();
     const containerRect=container.getBoundingClientRect();
 
-    // The transfer begins near the end of the primary reveal. At the start
-    // the background clone sits exactly on top of the primary SVG; as the
-    // user keeps scrolling, it expands into the full section background.
-    const handoffStart=0.62;
+    // The handoff is anchored to the TRUE Fibonacci focal point, not to the
+    // center of either rectangle. This keeps the spiral center perfectly
+    // stationary while the same geometry grows out of the primary SVG and
+    // becomes the atmospheric background.
+    const handoffStart=0.80;
     const rawTransfer=clamp((pageProgress-handoffStart)/(1-handoffStart),0,1);
     const transfer=rawTransfer*rawTransfer*(3-(2*rawTransfer));
 
@@ -208,12 +209,18 @@ serviceDialog.addEventListener('click',event=>{
     const startWidth=containerRect.width;
     const startHeight=containerRect.height;
 
-    const targetWidth=Math.max(sectionRect.width*1.42,startWidth*2.25);
+    // Exact on-page location of the Fibonacci focus (40,64) inside the
+    // foreground diagram. This point is the invariant pivot for both SVGs.
+    const anchorX=startLeft+(startWidth*focusRatio.x);
+    const anchorY=startTop+(startHeight*focusRatio.y);
+
+    const targetWidth=Math.max(sectionRect.width*1.62,startWidth*2.65);
     const targetHeight=targetWidth*(full.h/full.w);
-    const targetCenterX=sectionRect.width*0.53;
-    const targetCenterY=sectionRect.height*0.52;
-    const targetLeft=targetCenterX-(targetWidth/2);
-    const targetTop=targetCenterY-(targetHeight/2);
+
+    // Preserve the same focus ratio in the expanded SVG so its spiral center
+    // remains on the exact same pixel as the foreground spiral center.
+    const targetLeft=anchorX-(targetWidth*focusRatio.x);
+    const targetTop=anchorY-(targetHeight*focusRatio.y);
 
     const lerp=(a,b,t)=>a+((b-a)*t);
     backgroundWrap.style.left=`${lerp(startLeft,targetLeft,transfer).toFixed(2)}px`;
@@ -222,9 +229,9 @@ serviceDialog.addEventListener('click',event=>{
     backgroundWrap.style.height=`${lerp(startHeight,targetHeight,transfer).toFixed(2)}px`;
     backgroundWrap.style.opacity=(0.40*transfer).toFixed(3);
 
-    // Slightly hand visual priority from the foreground to the section-wide
-    // background without ever making the primary diagram disappear.
-    svg.style.opacity=(1-(0.30*transfer)).toFixed(3);
+    // Keep the primary SVG fully legible. The background reads as the same
+    // spiral continuing beyond its original footprint rather than replacing it.
+    svg.style.opacity='1';
 
     progress.style.width=`${(pageProgress*100).toFixed(1)}%`;
     depth.textContent=activeLevel(pageProgress).label;
@@ -233,7 +240,7 @@ serviceDialog.addEventListener('click',event=>{
     const active=rect.bottom>0&&rect.top<(window.innerHeight||document.documentElement.clientHeight);
     container.classList.toggle('is-active',active);
     container.classList.toggle('is-zoomed',pageProgress<0.98);
-    section.classList.toggle('fibonacci-bg-active',active&&pageProgress>=0.62);
+    section.classList.toggle('fibonacci-bg-active',active&&pageProgress>=0.80);
 
     container.setAttribute(
       'aria-label',
