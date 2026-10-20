@@ -101,6 +101,18 @@ serviceDialog.addEventListener('click',event=>{
   if(!container||!section) return;
 
   const svg=container.querySelector('.fibonacci-svg');
+  const backgroundWrap=document.createElement('div');
+  backgroundWrap.className='philosophy-bg-fibonacci';
+  backgroundWrap.setAttribute('aria-hidden','true');
+
+  const backgroundSvg=svg.cloneNode(true);
+  backgroundSvg.classList.add('fibonacci-bg-svg');
+  backgroundSvg.removeAttribute('aria-hidden');
+  backgroundSvg.setAttribute('focusable','false');
+  backgroundSvg.querySelectorAll('text').forEach(node=>node.remove());
+
+  backgroundWrap.appendChild(backgroundSvg);
+  section.prepend(backgroundWrap);
   const depth=container.querySelector('.fibonacci-depth');
   const progress=container.querySelector('.fibonacci-progress i');
 
@@ -174,6 +186,21 @@ serviceDialog.addEventListener('click',event=>{
       `${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`
     );
 
+    // Background version follows the same page scroll at a slower depth,
+    // creating a subtle spatial echo behind the entire philosophy section.
+    const bgZoom=1+((zoom-1)*0.34);
+    const bgW=full.w/bgZoom;
+    const bgH=full.h/bgZoom;
+    const bgX=focus.x-(focusRatio.x*bgW);
+    const bgY=focus.y-(focusRatio.y*bgH);
+    backgroundSvg.setAttribute(
+      'viewBox',
+      `${bgX.toFixed(3)} ${bgY.toFixed(3)} ${bgW.toFixed(3)} ${bgH.toFixed(3)}`
+    );
+    const bgShift=((0.5-pageProgress)*34).toFixed(2);
+    const bgScale=(1.10+(pageProgress*0.08)).toFixed(3);
+    backgroundWrap.style.transform=`translate3d(0,${bgShift}px,0) scale(${bgScale})`;
+
     progress.style.width=`${(pageProgress*100).toFixed(1)}%`;
     depth.textContent=activeLevel(pageProgress).label;
 
@@ -181,6 +208,7 @@ serviceDialog.addEventListener('click',event=>{
     const active=rect.bottom>0&&rect.top<(window.innerHeight||document.documentElement.clientHeight);
     container.classList.toggle('is-active',active);
     container.classList.toggle('is-zoomed',pageProgress<0.98);
+    section.classList.toggle('fibonacci-bg-active',active);
 
     container.setAttribute(
       'aria-label',
