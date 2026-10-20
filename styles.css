@@ -600,8 +600,21 @@
   color:#efefeb;
   background:#0b0b0b;
   border:1px solid #454545;
+  opacity:0;
+  transform:translateY(18px) scale(.985);
+  transition:opacity .42s ease,transform .42s cubic-bezier(.2,.75,.2,1);
+}
+.first-project-dialog.is-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 .first-project-dialog::backdrop{
+  background:rgba(0,0,0,0);
+  -webkit-backdrop-filter:blur(0);
+  backdrop-filter:blur(0);
+  transition:background .42s ease,backdrop-filter .42s ease,-webkit-backdrop-filter .42s ease;
+}
+.first-project-dialog.is-visible::backdrop{
   background:rgba(0,0,0,.82);
   -webkit-backdrop-filter:blur(10px);
   backdrop-filter:blur(10px);
