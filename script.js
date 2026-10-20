@@ -186,20 +186,45 @@ serviceDialog.addEventListener('click',event=>{
       `${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`
     );
 
-    // Background version follows the same page scroll at a slower depth,
-    // creating a subtle spatial echo behind the entire philosophy section.
-    const bgZoom=1+((zoom-1)*0.34);
-    const bgW=full.w/bgZoom;
-    const bgH=full.h/bgZoom;
-    const bgX=focus.x-(focusRatio.x*bgW);
-    const bgY=focus.y-(focusRatio.y*bgH);
+    // Synchronize the two SVGs so the background feels like the same
+    // Fibonacci system physically leaving the primary graphic.
     backgroundSvg.setAttribute(
       'viewBox',
-      `${bgX.toFixed(3)} ${bgY.toFixed(3)} ${bgW.toFixed(3)} ${bgH.toFixed(3)}`
+      `${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`
     );
-    const bgShift=((0.5-pageProgress)*34).toFixed(2);
-    const bgScale=(1.10+(pageProgress*0.08)).toFixed(3);
-    backgroundWrap.style.transform=`translate3d(0,${bgShift}px,0) scale(${bgScale})`;
+
+    const sectionRect=section.getBoundingClientRect();
+    const containerRect=container.getBoundingClientRect();
+
+    // The transfer begins near the end of the primary reveal. At the start
+    // the background clone sits exactly on top of the primary SVG; as the
+    // user keeps scrolling, it expands into the full section background.
+    const handoffStart=0.62;
+    const rawTransfer=clamp((pageProgress-handoffStart)/(1-handoffStart),0,1);
+    const transfer=rawTransfer*rawTransfer*(3-(2*rawTransfer));
+
+    const startLeft=containerRect.left-sectionRect.left;
+    const startTop=containerRect.top-sectionRect.top;
+    const startWidth=containerRect.width;
+    const startHeight=containerRect.height;
+
+    const targetWidth=Math.max(sectionRect.width*1.42,startWidth*2.25);
+    const targetHeight=targetWidth*(full.h/full.w);
+    const targetCenterX=sectionRect.width*0.53;
+    const targetCenterY=sectionRect.height*0.52;
+    const targetLeft=targetCenterX-(targetWidth/2);
+    const targetTop=targetCenterY-(targetHeight/2);
+
+    const lerp=(a,b,t)=>a+((b-a)*t);
+    backgroundWrap.style.left=`${lerp(startLeft,targetLeft,transfer).toFixed(2)}px`;
+    backgroundWrap.style.top=`${lerp(startTop,targetTop,transfer).toFixed(2)}px`;
+    backgroundWrap.style.width=`${lerp(startWidth,targetWidth,transfer).toFixed(2)}px`;
+    backgroundWrap.style.height=`${lerp(startHeight,targetHeight,transfer).toFixed(2)}px`;
+    backgroundWrap.style.opacity=(0.40*transfer).toFixed(3);
+
+    // Slightly hand visual priority from the foreground to the section-wide
+    // background without ever making the primary diagram disappear.
+    svg.style.opacity=(1-(0.30*transfer)).toFixed(3);
 
     progress.style.width=`${(pageProgress*100).toFixed(1)}%`;
     depth.textContent=activeLevel(pageProgress).label;
@@ -208,7 +233,7 @@ serviceDialog.addEventListener('click',event=>{
     const active=rect.bottom>0&&rect.top<(window.innerHeight||document.documentElement.clientHeight);
     container.classList.toggle('is-active',active);
     container.classList.toggle('is-zoomed',pageProgress<0.98);
-    section.classList.toggle('fibonacci-bg-active',active);
+    section.classList.toggle('fibonacci-bg-active',active&&pageProgress>=0.62);
 
     container.setAttribute(
       'aria-label',
