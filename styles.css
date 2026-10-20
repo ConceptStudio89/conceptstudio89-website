@@ -519,3 +519,65 @@
   .fibonacci-instruction{gap:6px}
   .fibonacci-instruction:before{width:16px}
 }
+
+
+/* 04 / Fibonacci atmospheric background */
+#about.philosophy{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+#about.philosophy > *:not(.philosophy-bg-fibonacci){
+  position:relative;
+  z-index:1;
+}
+.philosophy-bg-fibonacci{
+  position:absolute;
+  z-index:0;
+  inset:-24% -16% -20% -12%;
+  pointer-events:none;
+  opacity:.045;
+  transform:translate3d(0,0,0) scale(1.14);
+  transform-origin:52% 48%;
+  transition:opacity .35s ease;
+}
+.philosophy-bg-fibonacci .fibonacci-bg{
+  fill:transparent;
+}
+.philosophy-bg-fibonacci .fibonacci-grid{
+  opacity:.12;
+}
+.philosophy-bg-fibonacci .fibonacci-grid line{
+  stroke:rgba(255,255,255,.18);
+  stroke-width:.28;
+}
+.philosophy-bg-fibonacci .fibonacci-square{
+  fill:none;
+  stroke:rgba(255,255,255,.5);
+  stroke-width:.72;
+}
+.philosophy-bg-fibonacci .fibonacci-square-89{
+  fill:none;
+  stroke:rgba(215,255,0,.75);
+}
+.philosophy-bg-fibonacci .fibonacci-spiral-path{
+  stroke:var(--accent);
+  stroke-width:1.15;
+  filter:none;
+}
+.philosophy-bg-fibonacci text{
+  display:none;
+}
+#about.philosophy.fibonacci-bg-active .philosophy-bg-fibonacci{
+  opacity:.055;
+}
+@media(max-width:780px){
+  .philosophy-bg-fibonacci{
+    inset:-8% -42% -8% -44%;
+    opacity:.035;
+    transform:translate3d(0,0,0) scale(1.06);
+  }
+  #about.philosophy.fibonacci-bg-active .philosophy-bg-fibonacci{
+    opacity:.043;
+  }
+}
