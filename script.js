@@ -196,10 +196,9 @@ serviceDialog.addEventListener('click',event=>{
     const sectionRect=section.getBoundingClientRect();
     const containerRect=container.getBoundingClientRect();
 
-    // The handoff is anchored to the TRUE Fibonacci focal point, not to the
-    // center of either rectangle. This keeps the spiral center perfectly
-    // stationary while the same geometry grows out of the primary SVG and
-    // becomes the atmospheric background.
+    // The handoff is anchored to the TRUE Fibonacci focal point.
+    // The background wrapper now spans the entire section; only the cloned SVG
+    // expands inside it, preventing the atmospheric geometry from being cut.
     const handoffStart=0.80;
     const rawTransfer=clamp((pageProgress-handoffStart)/(1-handoffStart),0,1);
     const transfer=rawTransfer*rawTransfer*(3-(2*rawTransfer));
@@ -209,28 +208,39 @@ serviceDialog.addEventListener('click',event=>{
     const startWidth=containerRect.width;
     const startHeight=containerRect.height;
 
-    // Exact on-page location of the Fibonacci focus (40,64) inside the
-    // foreground diagram. This point is the invariant pivot for both SVGs.
+    // Exact section-relative pixel location of the Fibonacci focus (40,64).
+    // Both foreground and background keep this point invariant.
     const anchorX=startLeft+(startWidth*focusRatio.x);
     const anchorY=startTop+(startHeight*focusRatio.y);
 
-    const targetWidth=Math.max(sectionRect.width*1.62,startWidth*2.65);
+    // Compute the minimum expanded size that reaches every section edge while
+    // preserving the Fibonacci aspect ratio and the exact shared focal point.
+    const widthForLeft=anchorX/focusRatio.x;
+    const widthForRight=(sectionRect.width-anchorX)/(1-focusRatio.x);
+    const heightForTop=anchorY/focusRatio.y;
+    const heightForBottom=(sectionRect.height-anchorY)/(1-focusRatio.y);
+    const widthForVertical=Math.max(heightForTop,heightForBottom)*(full.w/full.h);
+
+    const targetWidth=Math.max(
+      startWidth*2.35,
+      widthForLeft,
+      widthForRight,
+      widthForVertical
+    )*1.08;
     const targetHeight=targetWidth*(full.h/full.w);
 
-    // Preserve the same focus ratio in the expanded SVG so its spiral center
-    // remains on the exact same pixel as the foreground spiral center.
     const targetLeft=anchorX-(targetWidth*focusRatio.x);
     const targetTop=anchorY-(targetHeight*focusRatio.y);
 
     const lerp=(a,b,t)=>a+((b-a)*t);
-    backgroundWrap.style.left=`${lerp(startLeft,targetLeft,transfer).toFixed(2)}px`;
-    backgroundWrap.style.top=`${lerp(startTop,targetTop,transfer).toFixed(2)}px`;
-    backgroundWrap.style.width=`${lerp(startWidth,targetWidth,transfer).toFixed(2)}px`;
-    backgroundWrap.style.height=`${lerp(startHeight,targetHeight,transfer).toFixed(2)}px`;
-    backgroundWrap.style.opacity=(0.40*transfer).toFixed(3);
+    backgroundSvg.style.left=`${lerp(startLeft,targetLeft,transfer).toFixed(2)}px`;
+    backgroundSvg.style.top=`${lerp(startTop,targetTop,transfer).toFixed(2)}px`;
+    backgroundSvg.style.width=`${lerp(startWidth,targetWidth,transfer).toFixed(2)}px`;
+    backgroundSvg.style.height=`${lerp(startHeight,targetHeight,transfer).toFixed(2)}px`;
+    backgroundSvg.style.opacity=(0.40*transfer).toFixed(3);
 
-    // Keep the primary SVG fully legible. The background reads as the same
-    // spiral continuing beyond its original footprint rather than replacing it.
+    // Keep the primary SVG fully legible; the background reads as an extension
+    // of the same spiral beyond the original graphic.
     svg.style.opacity='1';
 
     progress.style.width=`${(pageProgress*100).toFixed(1)}%`;
