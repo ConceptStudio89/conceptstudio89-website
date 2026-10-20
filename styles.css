@@ -384,11 +384,11 @@
   min-height:0;
   aspect-ratio:144 / 89 !important;
   align-self:start;
-  background:#0b0b0b;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:20px;
-  overflow:hidden;
-  isolation:isolate;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  overflow:visible;
+  isolation:auto;
   cursor:default;
   outline:none;
 }
@@ -396,9 +396,9 @@
   display:block;
   width:100%;
   height:100%;
-  background:#0b0b0b;
+  background:transparent;
 }
-.fibonacci-bg{fill:#0b0b0b}
+.fibonacci-bg{fill:transparent}
 .fibonacci-grid{
   opacity:.34;
   transition:opacity .25s ease;
