@@ -540,12 +540,15 @@
 .philosophy-bg-fibonacci{
   position:absolute;
   z-index:0;
-  inset:-24% -16% -20% -12%;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
   pointer-events:none;
-  opacity:.40;
-  transform:translate3d(0,0,0) scale(1.14);
-  transform-origin:52% 48%;
-  transition:opacity .35s ease;
+  opacity:0;
+  transform:none;
+  transform-origin:50% 50%;
+  will-change:left,top,width,height,opacity;
 }
 .philosophy-bg-fibonacci .fibonacci-bg{
   fill:transparent;
@@ -575,15 +578,21 @@
   display:none;
 }
 #about.philosophy.fibonacci-bg-active .philosophy-bg-fibonacci{
-  opacity:.44;
+  pointer-events:none;
 }
 @media(max-width:780px){
   .philosophy-bg-fibonacci{
-    inset:-8% -42% -8% -44%;
-    opacity:.34;
-    transform:translate3d(0,0,0) scale(1.06);
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    opacity:0;
   }
-  #about.philosophy.fibonacci-bg-active .philosophy-bg-fibonacci{
-    opacity:.38;
-  }
+}
+
+
+/* Foreground-to-background Fibonacci handoff */
+.interactive-fibonacci > .fibonacci-svg{
+  transition:opacity .08s linear;
+  will-change:opacity;
 }
