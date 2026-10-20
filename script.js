@@ -92,3 +92,92 @@ serviceDialog.addEventListener('click',event=>{
     if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)serviceDialog.close();
   }
 });
+
+
+/* 04 / Interactive Fibonacci SVG */
+(function initInteractiveFibonacci(){
+  const container=document.querySelector('[data-fibonacci-interactive]');
+  if(!container) return;
+
+  const svg=container.querySelector('.fibonacci-svg');
+  const depth=container.querySelector('.fibonacci-depth');
+  const progress=container.querySelector('.fibonacci-progress i');
+
+  const full={x:0,y:0,w:144,h:89};
+  const focus={x:40,y:64};
+  const focusRatio={x:focus.x/full.w,y:focus.y/full.h};
+  const levels=[
+    {zoom:1,label:'89'},
+    {zoom:1.55,label:'55'},
+    {zoom:2.2,label:'34'},
+    {zoom:3.1,label:'21'},
+    {zoom:4.4,label:'13'},
+    {zoom:6.1,label:'08'},
+    {zoom:8.2,label:'05'},
+    {zoom:10.5,label:'03'},
+    {zoom:12.7,label:'02'},
+    {zoom:15,label:'01'}
+  ];
+
+  let zoom=1;
+  const minZoom=1;
+  const maxZoom=15;
+
+  function clamp(value,min,max){
+    return Math.min(max,Math.max(min,value));
+  }
+
+  function activeLevel(){
+    let current=levels[0];
+    for(const level of levels){
+      if(zoom>=level.zoom) current=level;
+    }
+    return current;
+  }
+
+  function render(){
+    const w=full.w/zoom;
+    const h=full.h/zoom;
+    const x=focus.x-(focusRatio.x*w);
+    const y=focus.y-(focusRatio.y*h);
+    svg.setAttribute('viewBox',`${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`);
+
+    const pct=((zoom-minZoom)/(maxZoom-minZoom))*100;
+    progress.style.width=`${pct.toFixed(1)}%`;
+    depth.textContent=activeLevel().label;
+    container.classList.toggle('is-zoomed',zoom>1.05);
+    container.setAttribute('aria-label',`Interactive Fibonacci diagram. Current depth ${activeLevel().label}. Scroll down to zoom inward and up to zoom outward.`);
+  }
+
+  function setZoom(next){
+    zoom=clamp(next,minZoom,maxZoom);
+    render();
+  }
+
+  container.addEventListener('wheel',event=>{
+    const zoomingIn=event.deltaY>0;
+    const canChange=(zoomingIn&&zoom<maxZoom)||(!zoomingIn&&zoom>minZoom);
+    if(!canChange) return;
+
+    event.preventDefault();
+    const multiplier=zoomingIn?1.13:1/1.13;
+    setZoom(zoom*multiplier);
+  },{passive:false});
+
+  container.addEventListener('keydown',event=>{
+    if(event.key==='ArrowDown'||event.key==='PageDown'||event.key==='+'||event.key==='='){
+      event.preventDefault();
+      setZoom(zoom*1.18);
+    }
+    if(event.key==='ArrowUp'||event.key==='PageUp'||event.key==='-'||event.key==='_'){
+      event.preventDefault();
+      setZoom(zoom/1.18);
+    }
+    if(event.key==='Home'||event.key==='Escape'){
+      setZoom(1);
+    }
+  });
+
+  container.addEventListener('dblclick',()=>setZoom(1));
+  render();
+})();
