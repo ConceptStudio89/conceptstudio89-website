@@ -237,7 +237,7 @@ serviceDialog.addEventListener('click',event=>{
     backgroundSvg.style.top=`${lerp(startTop,targetTop,transfer).toFixed(2)}px`;
     backgroundSvg.style.width=`${lerp(startWidth,targetWidth,transfer).toFixed(2)}px`;
     backgroundSvg.style.height=`${lerp(startHeight,targetHeight,transfer).toFixed(2)}px`;
-    backgroundSvg.style.opacity=(0.40*transfer).toFixed(3);
+    backgroundSvg.style.opacity=(0.20*transfer).toFixed(3);
 
     // Keep the primary SVG fully legible; the background reads as an extension
     // of the same spiral beyond the original graphic.
