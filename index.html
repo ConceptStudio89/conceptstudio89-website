@@ -130,9 +130,9 @@
  <section id="services" class="section services">
   <h2 class="eyebrow"><b>02</b> What we do <i></i></h2>
   <div class="service-grid">
-   <a href="mailto:conceptst89@gmail.com?subject=Exhibit%20design%20inquiry" class="service"><h3><small>01</small> Exhibits <span>→</span></h3><img src="assets/exhibits-hq.webp" alt="Exhibit concept with modular displays and architectural lighting" loading="lazy"><p>Immersive exhibit concepts, 3D booth renders and graphics that communicate ideas and create impact.</p></a>
-   <a href="mailto:conceptst89@gmail.com?subject=Branded%20space%20inquiry" class="service"><h3><small>02</small> Branded Spaces <span>→</span></h3><img src="assets/branded-spaces-hq.webp" alt="Branded reception concept with a chartreuse accent wall" loading="lazy"><p>Spatial experiences that bring brands to life in physical environments.</p></a>
-   <a href="mailto:conceptst89@gmail.com?subject=Interior%20concept%20inquiry" class="service"><h3><small>03</small> Interiors <span>→</span></h3><img src="assets/interiors-hq.webp" alt="Warm contemporary interior concept overlooking a city" loading="lazy"><p>Thoughtful interiors that balance function, identity and human experience.</p></a>
+   <button type="button" class="service" data-service="exhibits" aria-haspopup="dialog"><h3><small>01</small> Exhibits <span>↗</span></h3><img src="assets/exhibits-hq.webp" alt="Exhibit concept with modular displays and architectural lighting" loading="lazy"><p>Immersive exhibit concepts, 3D booth renders and graphics that communicate ideas and create impact.</p><span class="service-hint">View the build process</span></button>
+   <button type="button" class="service" data-service="branded" aria-haspopup="dialog"><h3><small>02</small> Branded Spaces <span>↗</span></h3><img src="assets/branded-spaces-hq.webp" alt="Branded reception concept with a chartreuse accent wall" loading="lazy"><p>Spatial experiences that bring brands to life in physical environments.</p><span class="service-hint">View the build process</span></button>
+   <button type="button" class="service" data-service="interiors" aria-haspopup="dialog"><h3><small>03</small> Interiors <span>↗</span></h3><img src="assets/interiors-hq.webp" alt="Warm contemporary interior concept overlooking a city" loading="lazy"><p>Thoughtful interiors that balance function, identity and human experience.</p><span class="service-hint">View the build process</span></button>
   </div>
  </section>
  <section class="section concept" id="concept48">
@@ -141,7 +141,74 @@
  </section>
  <section id="about" class="section philosophy">
   <h2 class="eyebrow"><b>04</b> Design philosophy <i></i></h2>
-  <div class="philosophy-grid"><div class="philosophy-copy"><h3>Design is not<br>decoration.</h3><p>It is the relationship between ideas, proportion and space.</p><div class="dash"></div></div><img class="spiral" src="assets/fibonacci.png" alt="Correct Fibonacci spiral with translucent white rectangles and chartreuse sequence on a black background" loading="lazy"><div class="philosophy-note"><h4>The Fibonacci sequence</h4><p class="fibonacci">01 &nbsp;02 &nbsp;03 &nbsp;05 &nbsp;08 &nbsp;13 &nbsp;21 &nbsp;34 &nbsp;55 <em>89</em></p><p>A modular system for meaningful spaces. The logic of proportion helps us create environments that feel balanced, human and timeless.</p><div class="dash"></div><p class="stacked">Ideas<br>Proportion<br>Space</p></div><img class="architecture" src="assets/architecture-hq.webp" alt="Sculptural concrete architecture and a person for scale" loading="lazy"></div>
+  <div class="philosophy-grid"><div class="philosophy-copy"><h3>Design is not<br>decoration.</h3><p>It is the relationship between ideas, proportion and space.</p><div class="dash"></div></div><div class="spiral interactive-fibonacci" data-fibonacci-interactive role="img" aria-label="Interactive Fibonacci diagram built from perfect squares, ending with the 89 square. The diagram moves inward as the page scrolls through this section.">
+    <div class="fibonacci-ui" aria-hidden="true">
+      <span class="fibonacci-depth">89</span>
+    </div>
+    <svg class="fibonacci-svg" viewBox="0 0 144 89" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect class="fibonacci-bg" x="0" y="0" width="144" height="89"></rect>
+      <g class="fibonacci-grid">
+        <line x1="0" y1="0" x2="0" y2="89"></line>
+        <line x1="13" y1="0" x2="13" y2="89"></line>
+        <line x1="26" y1="0" x2="26" y2="89"></line>
+        <line x1="39" y1="0" x2="39" y2="89"></line>
+        <line x1="52" y1="0" x2="52" y2="89"></line>
+        <line x1="65" y1="0" x2="65" y2="89"></line>
+        <line x1="78" y1="0" x2="78" y2="89"></line>
+        <line x1="91" y1="0" x2="91" y2="89"></line>
+        <line x1="104" y1="0" x2="104" y2="89"></line>
+        <line x1="117" y1="0" x2="117" y2="89"></line>
+        <line x1="130" y1="0" x2="130" y2="89"></line>
+        <line x1="143" y1="0" x2="143" y2="89"></line>
+        <line x1="0" y1="0" x2="144" y2="0"></line>
+        <line x1="0" y1="13" x2="144" y2="13"></line>
+        <line x1="0" y1="26" x2="144" y2="26"></line>
+        <line x1="0" y1="39" x2="144" y2="39"></line>
+        <line x1="0" y1="52" x2="144" y2="52"></line>
+        <line x1="0" y1="65" x2="144" y2="65"></line>
+        <line x1="0" y1="78" x2="144" y2="78"></line>
+      </g>
+      <g class="fibonacci-zoom-layer">
+        <rect class="fibonacci-square fibonacci-square-89" x="55" y="0" width="89" height="89"></rect>
+        <rect class="fibonacci-square" x="0" y="0" width="55" height="55"></rect>
+        <rect class="fibonacci-square" x="0" y="55" width="34" height="34"></rect>
+        <rect class="fibonacci-square" x="34" y="68" width="21" height="21"></rect>
+        <rect class="fibonacci-square" x="42" y="55" width="13" height="13"></rect>
+        <rect class="fibonacci-square" x="34" y="55" width="8" height="8"></rect>
+        <rect class="fibonacci-square" x="34" y="63" width="5" height="5"></rect>
+        <rect class="fibonacci-square" x="39" y="65" width="3" height="3"></rect>
+        <rect class="fibonacci-square" x="40" y="63" width="2" height="2"></rect>
+        <rect class="fibonacci-square" x="39" y="63" width="1" height="1"></rect>
+        <rect class="fibonacci-square" x="39" y="64" width="1" height="1"></rect>
+
+        <text class="fibonacci-label fibonacci-label-89" x="61" y="10">89</text>
+        <text class="fibonacci-label" x="5" y="9">55</text>
+        <text class="fibonacci-label" x="4" y="63">34</text>
+        <text class="fibonacci-label" x="37" y="85">21</text>
+        <text class="fibonacci-label" x="44" y="60">13</text>
+        <text class="fibonacci-label" x="35" y="60">08</text>
+        <text class="fibonacci-label fibonacci-small-label" x="34.6" y="67">05</text>
+        <text class="fibonacci-label fibonacci-small-label" x="39.25" y="67.45">03</text>
+        <text class="fibonacci-label fibonacci-tiny-label" x="40.1" y="64.55">02</text>
+        <text class="fibonacci-label fibonacci-tiny-label" x="39.05" y="63.72">01</text>
+        <text class="fibonacci-label fibonacci-tiny-label" x="39.05" y="64.72">01</text>
+
+        <path class="fibonacci-spiral-path" d="M144 89
+          A89 89 0 0 0 55 0
+          A55 55 0 0 0 0 55
+          A34 34 0 0 0 34 89
+          A21 21 0 0 0 55 68
+          A13 13 0 0 0 42 55
+          A8 8 0 0 0 34 63
+          A5 5 0 0 0 39 68
+          A3 3 0 0 0 42 65
+          A2 2 0 0 0 40 63
+          A1 1 0 0 0 39 64
+          A1 1 0 0 0 40 65"></path>
+      </g>
+    </svg>
+    <div class="fibonacci-progress" aria-hidden="true"><i></i></div>
+  </div><div class="philosophy-note"><h4>The Fibonacci sequence</h4><p class="fibonacci">01 &nbsp;02 &nbsp;03 &nbsp;05 &nbsp;08 &nbsp;13 &nbsp;21 &nbsp;34 &nbsp;55 <em>89</em></p><p>A modular system for meaningful spaces. The logic of proportion helps us create environments that feel balanced, human and timeless.</p><div class="dash"></div><p class="stacked">Ideas<br>Proportion<br>Space</p></div><img class="architecture" src="assets/architecture-hq.webp" alt="Sculptural concrete architecture and a person for scale" loading="lazy"></div>
  </section>
  <section id="work" class="section work">
   <div class="section-heading"><h2 class="eyebrow"><b>05</b> Selected concepts <i></i></h2><span class="work-note">Spatial explorations / 01—03</span></div>
@@ -158,5 +225,27 @@
  <section id="contact" class="section contact"><h2 class="eyebrow"><b>07</b> Let’s create <i></i></h2><div class="contact-grid"><h3>Have a brief?<br>Let’s give it space.</h3><div class="contact-details"><p>Whether it’s an exhibit, a branded space or an interior, we’ll turn your ideas into a compelling spatial concept.</p><a href="mailto:conceptst89@gmail.com">conceptst89@gmail.com ↗</a></div><a class="button" href="mailto:conceptst89@gmail.com?subject=Let%E2%80%99s%20start%20a%20project&body=Hi%20ConceptStudio%2089%2C%0A%0AProject%20type%3A%0ADimensions%3A%0AShow%20date%20or%20deadline%3A%0AServices%20needed%3A%0A%0A">Start a project <span>→</span></a></div></section>
 </main>
 <footer class="footer"><a href="#home" class="brand"><span><b>CONCEPT</b><span class="light">STUDIO</span><em>89</em></span><small>Ideas. Proportion. Space.</small></a><nav aria-label="Footer navigation"><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#partners">Partners</a><a href="#contact">Contact</a></nav><span class="footer-territories">Exhibits<br>Branded spaces<br>Interiors</span></footer>
+
+<dialog id="service-process-dialog" class="service-process-dialog" aria-labelledby="service-process-title">
+ <button class="dialog-close service-process-close" aria-label="Close process">×</button>
+ <div class="process-kicker"><span id="service-process-index">01</span><span>Process study</span><i></i></div>
+ <div class="process-head">
+  <div>
+   <h2 id="service-process-title">Exhibits</h2>
+   <p id="service-process-intro">From a strategic brief to a presentation-ready spatial image.</p>
+  </div>
+  <p class="process-label">How the image is built</p>
+ </div>
+ <div class="process-hero">
+  <img id="service-process-image" src="assets/exhibits-hq.webp" alt="">
+  <div class="process-hero-tag"><span>05</span><b>FINAL VISUAL</b></div>
+ </div>
+ <div id="service-process-steps" class="process-steps" aria-label="Design process"></div>
+ <div class="process-foot">
+  <p>This diagram illustrates our concept-development workflow from initial intent to the final visual.</p>
+  <a id="service-process-contact" class="button" href="mailto:conceptst89@gmail.com">Discuss a project <span>→</span></a>
+ </div>
+</dialog>
+
 <dialog id="project-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close project">×</button><p class="eyebrow">Concept study</p><h2 id="dialog-title"></h2><img id="dialog-image" src="assets/tech-hq.webp" alt=""><p id="dialog-description"></p><a class="button" id="dialog-link" href="mailto:conceptst89@gmail.com">Discuss a similar project <span>→</span></a></dialog>
 </body></html>
