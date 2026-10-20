@@ -11,7 +11,7 @@ hospitality:{title:'HOSPITALITY / Interior concept',image:'assets/hospitality-hq
 };
 const dialog=document.getElementById('project-dialog');
 document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const study=studies[button.dataset.project];document.getElementById('dialog-title').textContent=study.title;const image=document.getElementById('dialog-image');image.src=study.image;image.alt=study.title;document.getElementById('dialog-description').textContent=study.description;document.getElementById('dialog-link').href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent('Project inquiry | '+study.title);dialog.showModal();}));
-document.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',event=>{if(event.target===dialog){const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dialog.close();}});
 
 
