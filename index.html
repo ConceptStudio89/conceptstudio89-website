@@ -129,9 +129,9 @@
  <section id="services" class="section services">
   <h2 class="eyebrow"><b>02</b> What we do <i></i></h2>
   <div class="service-grid">
-   <a href="mailto:conceptst89@gmail.com?subject=Exhibit%20design%20inquiry" class="service"><h3><small>01</small> Exhibits <span>→</span></h3><img src="assets/exhibits-hq.webp" alt="Exhibit concept with modular displays and architectural lighting" loading="lazy"><p>Immersive exhibit concepts, 3D booth renders and graphics that communicate ideas and create impact.</p></a>
-   <a href="mailto:conceptst89@gmail.com?subject=Branded%20space%20inquiry" class="service"><h3><small>02</small> Branded Spaces <span>→</span></h3><img src="assets/branded-spaces-hq.webp" alt="Branded reception concept with a chartreuse accent wall" loading="lazy"><p>Spatial experiences that bring brands to life in physical environments.</p></a>
-   <a href="mailto:conceptst89@gmail.com?subject=Interior%20concept%20inquiry" class="service"><h3><small>03</small> Interiors <span>→</span></h3><img src="assets/interiors-hq.webp" alt="Warm contemporary interior concept overlooking a city" loading="lazy"><p>Thoughtful interiors that balance function, identity and human experience.</p></a>
+   <button type="button" class="service" data-service="exhibits" aria-haspopup="dialog"><h3><small>01</small> Exhibits <span>↗</span></h3><img src="assets/exhibits-hq.webp" alt="Exhibit concept with modular displays and architectural lighting" loading="lazy"><p>Immersive exhibit concepts, 3D booth renders and graphics that communicate ideas and create impact.</p><span class="service-hint">View the build process</span></button>
+   <button type="button" class="service" data-service="branded" aria-haspopup="dialog"><h3><small>02</small> Branded Spaces <span>↗</span></h3><img src="assets/branded-spaces-hq.webp" alt="Branded reception concept with a chartreuse accent wall" loading="lazy"><p>Spatial experiences that bring brands to life in physical environments.</p><span class="service-hint">View the build process</span></button>
+   <button type="button" class="service" data-service="interiors" aria-haspopup="dialog"><h3><small>03</small> Interiors <span>↗</span></h3><img src="assets/interiors-hq.webp" alt="Warm contemporary interior concept overlooking a city" loading="lazy"><p>Thoughtful interiors that balance function, identity and human experience.</p><span class="service-hint">View the build process</span></button>
   </div>
  </section>
  <section class="section concept" id="concept48">
@@ -157,5 +157,27 @@
  <section id="contact" class="section contact"><h2 class="eyebrow"><b>07</b> Let’s create <i></i></h2><div class="contact-grid"><h3>Have a brief?<br>Let’s give it space.</h3><div class="contact-details"><p>Whether it’s an exhibit, a branded space or an interior, we’ll turn your ideas into a compelling spatial concept.</p><a href="mailto:conceptst89@gmail.com">conceptst89@gmail.com ↗</a></div><a class="button" href="mailto:conceptst89@gmail.com?subject=Let%E2%80%99s%20start%20a%20project&body=Hi%20ConceptStudio%2089%2C%0A%0AProject%20type%3A%0ADimensions%3A%0AShow%20date%20or%20deadline%3A%0AServices%20needed%3A%0A%0A">Start a project <span>→</span></a></div></section>
 </main>
 <footer class="footer"><a href="#home" class="brand"><span><b>CONCEPT</b><span class="light">STUDIO</span><em>89</em></span><small>Ideas. Proportion. Space.</small></a><nav aria-label="Footer navigation"><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#partners">Partners</a><a href="#contact">Contact</a></nav><span class="footer-territories">Exhibits<br>Branded spaces<br>Interiors</span></footer>
+
+<dialog id="service-process-dialog" class="service-process-dialog" aria-labelledby="service-process-title">
+ <button class="dialog-close service-process-close" aria-label="Close process">×</button>
+ <div class="process-kicker"><span id="service-process-index">01</span><span>Process study</span><i></i></div>
+ <div class="process-head">
+  <div>
+   <h2 id="service-process-title">Exhibits</h2>
+   <p id="service-process-intro">From a strategic brief to a presentation-ready spatial image.</p>
+  </div>
+  <p class="process-label">How the image is built</p>
+ </div>
+ <div class="process-hero">
+  <img id="service-process-image" src="assets/exhibits-hq.webp" alt="">
+  <div class="process-hero-tag"><span>05</span><b>FINAL VISUAL</b></div>
+ </div>
+ <div id="service-process-steps" class="process-steps" aria-label="Design process"></div>
+ <div class="process-foot">
+  <p>This diagram illustrates our concept-development workflow from initial intent to the final visual.</p>
+  <a id="service-process-contact" class="button" href="mailto:conceptst89@gmail.com">Discuss a project <span>→</span></a>
+ </div>
+</dialog>
+
 <dialog id="project-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close project">×</button><p class="eyebrow">Concept study</p><h2 id="dialog-title"></h2><img id="dialog-image" src="assets/tech-hq.webp" alt=""><p id="dialog-description"></p><a class="button" id="dialog-link" href="mailto:conceptst89@gmail.com">Discuss a similar project <span>→</span></a></dialog>
 </body></html>
