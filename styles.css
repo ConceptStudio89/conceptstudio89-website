@@ -694,13 +694,26 @@
   font-size:9px;
   letter-spacing:1.5px;
 }
-.first-project-price strong{
+.first-project-price-values{
   justify-self:end;
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
+.first-project-price-values del{
+  color:#767672;
+  font-size:18px;
+  line-height:1;
+  font-weight:400;
+  text-decoration-thickness:1px;
+  text-decoration-color:#9b9b96;
+}
+.first-project-price strong{
   color:var(--accent);
-  font-size:clamp(34px,5vw,54px);
-  line-height:.9;
-  font-weight:500;
-  letter-spacing:-2px;
+  font-size:clamp(44px,6vw,64px);
+  line-height:.86;
+  font-weight:600;
+  letter-spacing:-3px;
 }
 .first-project-price small{
   grid-column:1/-1;
@@ -777,6 +790,10 @@
   width:100%;
   justify-content:space-between;
   margin-top:4px;
+  color:#0b0b0b !important;
+}
+.first-project-cta span{
+  color:#0b0b0b;
 }
 .first-project-note{
   margin:14px 0 0;
