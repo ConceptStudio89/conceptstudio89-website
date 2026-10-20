@@ -389,12 +389,8 @@
   border-radius:20px;
   overflow:hidden;
   isolation:isolate;
-  cursor:ns-resize;
+  cursor:default;
   outline:none;
-}
-#about.philosophy .interactive-fibonacci:focus-visible{
-  outline:2px solid var(--accent);
-  outline-offset:5px;
 }
 .fibonacci-svg{
   display:block;
@@ -412,8 +408,7 @@
   stroke-width:.22;
   vector-effect:non-scaling-stroke;
 }
-.interactive-fibonacci:hover .fibonacci-grid,
-.interactive-fibonacci:focus .fibonacci-grid{opacity:.18}
+.interactive-fibonacci.is-active .fibonacci-grid{opacity:.18}
 .fibonacci-square{
   fill:rgba(255,255,255,.045);
   stroke:rgba(255,255,255,.46);
@@ -426,12 +421,10 @@
   stroke:rgba(215,255,0,.9);
   stroke-width:.82;
 }
-.interactive-fibonacci:hover .fibonacci-square,
-.interactive-fibonacci:focus .fibonacci-square{
+.interactive-fibonacci.is-active .fibonacci-square{
   fill:rgba(255,255,255,.07);
 }
-.interactive-fibonacci:hover .fibonacci-square-89,
-.interactive-fibonacci:focus .fibonacci-square-89{
+.interactive-fibonacci.is-active .fibonacci-square-89{
   fill:rgba(215,255,0,.09);
 }
 .fibonacci-label{
@@ -457,11 +450,6 @@
   stroke-linecap:round;
   stroke-linejoin:round;
   filter:drop-shadow(0 0 5px rgba(215,255,0,.28));
-}
-.fibonacci-focus{
-  fill:var(--accent);
-  opacity:.8;
-  vector-effect:non-scaling-stroke;
 }
 .fibonacci-ui{
   position:absolute;
