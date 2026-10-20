@@ -384,7 +384,9 @@
   min-height:0;
   aspect-ratio:144 / 89 !important;
   align-self:start;
-  background:transparent;
+  background:rgba(11,11,11,.035);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
   border:0;
   border-radius:0;
   overflow:visible;
@@ -458,7 +460,7 @@
   right:16px;
   top:15px;
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-end;
   align-items:center;
   gap:20px;
   pointer-events:none;
@@ -467,17 +469,6 @@
   font-size:8px;
   color:rgba(239,239,235,.78);
   mix-blend-mode:normal;
-}
-.fibonacci-instruction{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-}
-.fibonacci-instruction:before{
-  content:"";
-  width:23px;
-  height:1px;
-  background:var(--accent);
 }
 .fibonacci-depth{
   min-width:34px;
@@ -503,9 +494,6 @@
   box-shadow:0 0 8px rgba(215,255,0,.35);
   transition:width .16s ease-out;
 }
-.interactive-fibonacci.is-zoomed .fibonacci-instruction{
-  color:rgba(239,239,235,.5);
-}
 @media(max-width:959px){
   #about.philosophy .interactive-fibonacci{
     width:100%;
@@ -516,8 +504,6 @@
   .fibonacci-ui{left:10px;right:10px;top:10px;font-size:7px}
   .fibonacci-progress{left:10px;right:10px;bottom:9px}
   .fibonacci-depth{font-size:9px}
-  .fibonacci-instruction{gap:6px}
-  .fibonacci-instruction:before{width:16px}
 }
 
 
@@ -540,14 +526,20 @@
 .philosophy-bg-fibonacci{
   position:absolute;
   z-index:0;
-  left:0;
-  top:0;
+  inset:0;
   width:100%;
   height:100%;
   pointer-events:none;
+  overflow:visible;
+  opacity:1;
+}
+.philosophy-bg-fibonacci .fibonacci-bg-svg{
+  position:absolute;
+  display:block;
+  max-width:none;
+  max-height:none;
+  overflow:visible;
   opacity:0;
-  transform:none;
-  transform-origin:50% 50%;
   will-change:left,top,width,height,opacity;
 }
 .philosophy-bg-fibonacci .fibonacci-bg{
@@ -582,11 +574,10 @@
 }
 @media(max-width:780px){
   .philosophy-bg-fibonacci{
-    left:0;
-    top:0;
+    inset:0;
     width:100%;
     height:100%;
-    opacity:0;
+    opacity:1;
   }
 }
 
