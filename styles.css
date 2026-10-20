@@ -456,13 +456,14 @@
 .fibonacci-ui{
   position:absolute;
   z-index:3;
-  left:16px;
+  left:auto;
   right:16px;
   top:15px;
+  width:auto;
   display:flex;
   justify-content:flex-end;
   align-items:center;
-  gap:20px;
+  gap:0;
   pointer-events:none;
   text-transform:uppercase;
   letter-spacing:1.35px;
@@ -471,10 +472,11 @@
   mix-blend-mode:normal;
 }
 .fibonacci-depth{
-  min-width:34px;
+  display:block;
+  min-width:28px;
   text-align:right;
   color:var(--accent);
-  font:700 11px/1 Courier,monospace;
+  font:700 10px/1 Courier,monospace;
 }
 .fibonacci-progress{
   position:absolute;
@@ -501,7 +503,7 @@
   }
 }
 @media(max-width:780px){
-  .fibonacci-ui{left:10px;right:10px;top:10px;font-size:7px}
+  .fibonacci-ui{left:auto;right:10px;top:10px;width:auto;font-size:7px}
   .fibonacci-progress{left:10px;right:10px;bottom:9px}
   .fibonacci-depth{font-size:9px}
 }
