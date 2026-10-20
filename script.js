@@ -273,17 +273,34 @@ serviceDialog.addEventListener('click',event=>{
 
 
 
-/* First Project Program — development test */
+/* First Project Program — reveal at section 02 */
 (function initFirstProjectProgram(){
   const offerDialog=document.getElementById('first-project-dialog');
   const offerForm=document.getElementById('first-project-form');
   const offerClose=offerDialog?.querySelector('.first-project-close');
-  if(!offerDialog||!offerForm||!offerClose) return;
+  const triggerSection=document.getElementById('services');
+  if(!offerDialog||!offerForm||!offerClose||!triggerSection) return;
 
   const companyInput=document.getElementById('first-project-company');
   const showInput=document.getElementById('first-project-show');
+  let hasOpened=false;
+  let closeTimer=null;
 
-  function closeOffer(){offerDialog.close();}
+  function openOffer(){
+    if(hasOpened||offerDialog.open) return;
+    hasOpened=true;
+    offerDialog.showModal();
+    window.requestAnimationFrame(()=>{
+      window.requestAnimationFrame(()=>offerDialog.classList.add('is-visible'));
+    });
+  }
+
+  function closeOffer(){
+    if(!offerDialog.open) return;
+    offerDialog.classList.remove('is-visible');
+    window.clearTimeout(closeTimer);
+    closeTimer=window.setTimeout(()=>offerDialog.close(),420);
+  }
 
   offerClose.addEventListener('click',closeOffer);
   offerDialog.addEventListener('click',event=>{
@@ -293,6 +310,11 @@ serviceDialog.addEventListener('click',event=>{
       closeOffer();
     }
   });
+  offerDialog.addEventListener('cancel',event=>{
+    event.preventDefault();
+    closeOffer();
+  });
+  offerDialog.addEventListener('close',()=>offerDialog.classList.remove('is-visible'));
 
   offerForm.addEventListener('submit',event=>{
     event.preventDefault();
@@ -315,7 +337,16 @@ serviceDialog.addEventListener('click',event=>{
       encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   });
 
-  window.setTimeout(()=>{
-    if(!offerDialog.open) offerDialog.showModal();
-  },450);
+  const observer=new IntersectionObserver(entries=>{
+    const entry=entries[0];
+    if(entry?.isIntersecting&&entry.intersectionRatio>=0.28){
+      observer.disconnect();
+      openOffer();
+    }
+  },{
+    threshold:[0,.28,.5],
+    rootMargin:'0px 0px -8% 0px'
+  });
+
+  observer.observe(triggerSection);
 })();
