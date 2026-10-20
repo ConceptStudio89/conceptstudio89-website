@@ -107,17 +107,20 @@ serviceDialog.addEventListener('click',event=>{
   const full={x:0,y:0,w:144,h:89};
   const focus={x:40,y:64};
   const focusRatio={x:focus.x/full.w,y:focus.y/full.h};
+
+  // Scroll-down sequence is intentionally reversed:
+  // inner Fibonacci detail -> complete 89-square composition.
   const levels=[
-    {progress:0.00,zoom:1,label:'89'},
-    {progress:0.12,zoom:1.55,label:'55'},
-    {progress:0.24,zoom:2.2,label:'34'},
-    {progress:0.36,zoom:3.1,label:'21'},
-    {progress:0.48,zoom:4.4,label:'13'},
-    {progress:0.60,zoom:6.1,label:'08'},
-    {progress:0.70,zoom:8.2,label:'05'},
-    {progress:0.80,zoom:10.5,label:'03'},
-    {progress:0.90,zoom:12.7,label:'02'},
-    {progress:1.00,zoom:15,label:'01'}
+    {progress:0.00,zoom:15,label:'01'},
+    {progress:0.10,zoom:12.7,label:'02'},
+    {progress:0.20,zoom:10.5,label:'03'},
+    {progress:0.30,zoom:8.2,label:'05'},
+    {progress:0.40,zoom:6.1,label:'08'},
+    {progress:0.52,zoom:4.4,label:'13'},
+    {progress:0.64,zoom:3.1,label:'21'},
+    {progress:0.76,zoom:2.2,label:'34'},
+    {progress:0.88,zoom:1.55,label:'55'},
+    {progress:1.00,zoom:1,label:'89'}
   ];
 
   let ticking=false;
@@ -150,11 +153,11 @@ serviceDialog.addEventListener('click',event=>{
     const rect=section.getBoundingClientRect();
     const vh=window.innerHeight||document.documentElement.clientHeight;
 
-    // Interaction starts as section 04 enters the lower viewport,
-    // and completes as the section moves toward the top.
-    const start=vh*0.82;
-    const travel=Math.max(vh*0.92,rect.height+vh*0.30);
-    return clamp((start-rect.top)/travel,0,1);
+    // Begin while section 04 approaches from below.
+    // Reach 100% / full 89 composition as the section settles into view.
+    const start=vh*0.96;
+    const finish=vh*0.20;
+    return clamp((start-rect.top)/(start-finish),0,1);
   }
 
   function render(){
@@ -165,7 +168,11 @@ serviceDialog.addEventListener('click',event=>{
     const h=full.h/zoom;
     const x=focus.x-(focusRatio.x*w);
     const y=focus.y-(focusRatio.y*h);
-    svg.setAttribute('viewBox',`${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`);
+
+    svg.setAttribute(
+      'viewBox',
+      `${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`
+    );
 
     progress.style.width=`${(pageProgress*100).toFixed(1)}%`;
     depth.textContent=activeLevel(pageProgress).label;
@@ -173,11 +180,11 @@ serviceDialog.addEventListener('click',event=>{
     const rect=section.getBoundingClientRect();
     const active=rect.bottom>0&&rect.top<(window.innerHeight||document.documentElement.clientHeight);
     container.classList.toggle('is-active',active);
-    container.classList.toggle('is-zoomed',pageProgress>0.02);
+    container.classList.toggle('is-zoomed',pageProgress<0.98);
 
     container.setAttribute(
       'aria-label',
-      `Interactive Fibonacci diagram. Current depth ${activeLevel(pageProgress).label}. Its motion follows the page scroll through section 04.`
+      `Interactive Fibonacci diagram. Current depth ${activeLevel(pageProgress).label}. The full 89-square composition is revealed as section 04 comes into view.`
     );
 
     ticking=false;
