@@ -589,3 +589,223 @@
   transition:opacity .08s linear;
   will-change:opacity;
 }
+
+
+/* First Project Program */
+.first-project-dialog{
+  width:min(940px,92vw);
+  max-width:940px;
+  padding:0;
+  overflow:hidden;
+  color:#efefeb;
+  background:#0b0b0b;
+  border:1px solid #454545;
+}
+.first-project-dialog::backdrop{
+  background:rgba(0,0,0,.82);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.first-project-dialog .first-project-close{
+  z-index:5;
+  top:18px;
+  right:20px;
+  color:#fff;
+}
+.first-project-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+}
+.first-project-offer,
+.first-project-details{
+  min-width:0;
+  padding:clamp(34px,5vw,64px);
+}
+.first-project-offer{
+  position:relative;
+  background:
+    linear-gradient(rgba(215,255,0,.06),rgba(215,255,0,.015)),
+    #0b0b0b;
+  border-right:1px solid #343434;
+  overflow:hidden;
+}
+.first-project-offer:after{
+  content:"89";
+  position:absolute;
+  right:-10px;
+  bottom:-44px;
+  font-size:clamp(150px,20vw,250px);
+  line-height:.8;
+  letter-spacing:-18px;
+  font-weight:700;
+  color:rgba(215,255,0,.045);
+  pointer-events:none;
+}
+.first-project-kicker{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:0 0 34px;
+  color:var(--accent);
+  font-size:9px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
+.first-project-kicker i{
+  width:52px;
+  height:1px;
+  background:#6d6d6d;
+}
+.first-project-offer h2{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:clamp(52px,7vw,84px);
+  line-height:.88;
+  letter-spacing:-4px;
+  font-weight:400;
+}
+.first-project-offer h2 em{
+  color:var(--accent);
+  font-style:normal;
+}
+.first-project-lead{
+  position:relative;
+  z-index:1;
+  max-width:420px;
+  margin:26px 0 36px;
+  color:#aaa;
+  font-size:14px;
+  line-height:1.55;
+}
+.first-project-price{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:end;
+  gap:5px 16px;
+  padding-top:22px;
+  border-top:1px solid #3b3b3b;
+}
+.first-project-price span{
+  align-self:center;
+  color:#c7c7c2;
+  font-size:9px;
+  letter-spacing:1.5px;
+}
+.first-project-price strong{
+  justify-self:end;
+  color:var(--accent);
+  font-size:clamp(34px,5vw,54px);
+  line-height:.9;
+  font-weight:500;
+  letter-spacing:-2px;
+}
+.first-project-price small{
+  grid-column:1/-1;
+  color:#72726f;
+  font-size:9px;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+.first-project-details{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:#111;
+}
+.first-project-label{
+  margin:0 0 22px;
+  color:#e8e8e4;
+  font-size:16px;
+  line-height:1.35;
+}
+.first-project-details ul{
+  list-style:none;
+  padding:0;
+  margin:0 0 30px;
+  border-top:1px solid #303030;
+}
+.first-project-details li{
+  position:relative;
+  padding:10px 0 10px 18px;
+  border-bottom:1px solid #2c2c2c;
+  color:#9f9f9b;
+  font-size:11px;
+  line-height:1.4;
+}
+.first-project-details li:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:16px;
+  width:6px;
+  height:1px;
+  background:var(--accent);
+}
+#first-project-form{
+  display:grid;
+  gap:14px;
+}
+#first-project-form label{
+  display:grid;
+  gap:7px;
+  color:#bdbdb8;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+#first-project-form input{
+  width:100%;
+  min-height:46px;
+  padding:0 13px;
+  color:#efefeb;
+  background:#0b0b0b;
+  border:1px solid #424242;
+  border-radius:0;
+  outline:none;
+  font:400 14px/1.2 inherit;
+  text-transform:none;
+  letter-spacing:0;
+}
+#first-project-form input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent);
+}
+.first-project-cta{
+  width:100%;
+  justify-content:space-between;
+  margin-top:4px;
+}
+.first-project-note{
+  margin:14px 0 0;
+  color:#646461;
+  font-size:9px;
+  line-height:1.45;
+}
+@media(max-width:760px){
+  .first-project-dialog{
+    width:94vw;
+    max-height:92vh;
+    overflow:auto;
+  }
+  .first-project-grid{
+    grid-template-columns:1fr;
+  }
+  .first-project-offer,
+  .first-project-details{
+    padding:32px 24px;
+  }
+  .first-project-offer{
+    border-right:0;
+    border-bottom:1px solid #343434;
+  }
+  .first-project-offer h2{
+    font-size:52px;
+    letter-spacing:-3px;
+  }
+  .first-project-lead{
+    margin:20px 0 28px;
+  }
+}
