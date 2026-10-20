@@ -94,10 +94,11 @@ serviceDialog.addEventListener('click',event=>{
 });
 
 
-/* 04 / Interactive Fibonacci SVG */
+/* 04 / Interactive Fibonacci SVG — driven by page scroll */
 (function initInteractiveFibonacci(){
   const container=document.querySelector('[data-fibonacci-interactive]');
-  if(!container) return;
+  const section=document.getElementById('about');
+  if(!container||!section) return;
 
   const svg=container.querySelector('.fibonacci-svg');
   const depth=container.querySelector('.fibonacci-depth');
@@ -107,77 +108,89 @@ serviceDialog.addEventListener('click',event=>{
   const focus={x:40,y:64};
   const focusRatio={x:focus.x/full.w,y:focus.y/full.h};
   const levels=[
-    {zoom:1,label:'89'},
-    {zoom:1.55,label:'55'},
-    {zoom:2.2,label:'34'},
-    {zoom:3.1,label:'21'},
-    {zoom:4.4,label:'13'},
-    {zoom:6.1,label:'08'},
-    {zoom:8.2,label:'05'},
-    {zoom:10.5,label:'03'},
-    {zoom:12.7,label:'02'},
-    {zoom:15,label:'01'}
+    {progress:0.00,zoom:1,label:'89'},
+    {progress:0.12,zoom:1.55,label:'55'},
+    {progress:0.24,zoom:2.2,label:'34'},
+    {progress:0.36,zoom:3.1,label:'21'},
+    {progress:0.48,zoom:4.4,label:'13'},
+    {progress:0.60,zoom:6.1,label:'08'},
+    {progress:0.70,zoom:8.2,label:'05'},
+    {progress:0.80,zoom:10.5,label:'03'},
+    {progress:0.90,zoom:12.7,label:'02'},
+    {progress:1.00,zoom:15,label:'01'}
   ];
 
-  let zoom=1;
-  const minZoom=1;
-  const maxZoom=15;
+  let ticking=false;
 
   function clamp(value,min,max){
     return Math.min(max,Math.max(min,value));
   }
 
-  function activeLevel(){
+  function interpolateZoom(pageProgress){
+    for(let i=0;i<levels.length-1;i++){
+      const a=levels[i];
+      const b=levels[i+1];
+      if(pageProgress>=a.progress&&pageProgress<=b.progress){
+        const local=(pageProgress-a.progress)/(b.progress-a.progress);
+        return a.zoom+(b.zoom-a.zoom)*local;
+      }
+    }
+    return pageProgress<=0?levels[0].zoom:levels[levels.length-1].zoom;
+  }
+
+  function activeLevel(pageProgress){
     let current=levels[0];
     for(const level of levels){
-      if(zoom>=level.zoom) current=level;
+      if(pageProgress>=level.progress) current=level;
     }
     return current;
   }
 
+  function sectionProgress(){
+    const rect=section.getBoundingClientRect();
+    const vh=window.innerHeight||document.documentElement.clientHeight;
+
+    // Interaction starts as section 04 enters the lower viewport,
+    // and completes as the section moves toward the top.
+    const start=vh*0.82;
+    const travel=Math.max(vh*0.92,rect.height+vh*0.30);
+    return clamp((start-rect.top)/travel,0,1);
+  }
+
   function render(){
+    const pageProgress=sectionProgress();
+    const zoom=interpolateZoom(pageProgress);
+
     const w=full.w/zoom;
     const h=full.h/zoom;
     const x=focus.x-(focusRatio.x*w);
     const y=focus.y-(focusRatio.y*h);
     svg.setAttribute('viewBox',`${x.toFixed(3)} ${y.toFixed(3)} ${w.toFixed(3)} ${h.toFixed(3)}`);
 
-    const pct=((zoom-minZoom)/(maxZoom-minZoom))*100;
-    progress.style.width=`${pct.toFixed(1)}%`;
-    depth.textContent=activeLevel().label;
-    container.classList.toggle('is-zoomed',zoom>1.05);
-    container.setAttribute('aria-label',`Interactive Fibonacci diagram. Current depth ${activeLevel().label}. Scroll down to zoom inward and up to zoom outward.`);
+    progress.style.width=`${(pageProgress*100).toFixed(1)}%`;
+    depth.textContent=activeLevel(pageProgress).label;
+
+    const rect=section.getBoundingClientRect();
+    const active=rect.bottom>0&&rect.top<(window.innerHeight||document.documentElement.clientHeight);
+    container.classList.toggle('is-active',active);
+    container.classList.toggle('is-zoomed',pageProgress>0.02);
+
+    container.setAttribute(
+      'aria-label',
+      `Interactive Fibonacci diagram. Current depth ${activeLevel(pageProgress).label}. Its motion follows the page scroll through section 04.`
+    );
+
+    ticking=false;
   }
 
-  function setZoom(next){
-    zoom=clamp(next,minZoom,maxZoom);
-    render();
+  function requestRender(){
+    if(ticking) return;
+    ticking=true;
+    window.requestAnimationFrame(render);
   }
 
-  container.addEventListener('wheel',event=>{
-    const zoomingIn=event.deltaY>0;
-    const canChange=(zoomingIn&&zoom<maxZoom)||(!zoomingIn&&zoom>minZoom);
-    if(!canChange) return;
-
-    event.preventDefault();
-    const multiplier=zoomingIn?1.13:1/1.13;
-    setZoom(zoom*multiplier);
-  },{passive:false});
-
-  container.addEventListener('keydown',event=>{
-    if(event.key==='ArrowDown'||event.key==='PageDown'||event.key==='+'||event.key==='='){
-      event.preventDefault();
-      setZoom(zoom*1.18);
-    }
-    if(event.key==='ArrowUp'||event.key==='PageUp'||event.key==='-'||event.key==='_'){
-      event.preventDefault();
-      setZoom(zoom/1.18);
-    }
-    if(event.key==='Home'||event.key==='Escape'){
-      setZoom(1);
-    }
-  });
-
-  container.addEventListener('dblclick',()=>setZoom(1));
+  window.addEventListener('scroll',requestRender,{passive:true});
+  window.addEventListener('resize',requestRender,{passive:true});
   render();
 })();
+
