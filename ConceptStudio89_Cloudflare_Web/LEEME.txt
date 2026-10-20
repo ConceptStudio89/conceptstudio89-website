@@ -1,0 +1,54 @@
+CONCEPTSTUDIO 89 — WEB PARA CLOUDFLARE PAGES
+
+CORREO CONFIGURADO: conceptst89@gmail.com
+
+PUBLICAR SIN PAGAR HOSTING NI COMPRAR DOMINIO
+1. Entra a tu cuenta de Cloudflare.
+2. Abre Workers & Pages y elige crear una aplicación de Pages.
+3. Busca la opción de carga directa: Drag and drop / Upload assets.
+4. Usa conceptstudio89 como nombre del proyecto, si está disponible.
+5. Arrastra este ZIP o la carpeta descomprimida que contiene index.html.
+6. Pulsa Deploy site / Save and Deploy.
+7. Copia la dirección pública que Cloudflare te asigne, terminada en .pages.dev.
+   No se ha reservado ningún nombre ni publicado el sitio desde este archivo.
+
+IMPORTANTE: index.html debe quedar en la raíz de la carga, junto a styles.css,
+script.js y la carpeta assets. No selecciones un proyecto de Worker con
+compilación: esta es una página estática de Pages, sin instalación ni build.
+Los nombres y ubicación de los controles pueden variar con la interfaz.
+
+CONTACTO
+Los botones abren la aplicación de correo del visitante mediante mailto.
+También se muestra el correo para poder copiarlo si no tiene aplicación configurada.
+No hay un formulario con servidor ni se recopilan datos en esta web.
+
+DISEÑO Y CONTENIDO
+Sitio en inglés basado en la referencia proporcionada. Textos y botones son
+HTML editable; el menú móvil y las tarjetas de conceptos son interactivos.
+Las imágenes arquitectónicas se generaron individualmente en alta resolución
+para esta versión y se optimizaron como WEBP para la web. No son recortes
+de la captura. El estudio de proporciones es SVG y mantiene su nitidez
+a cualquier escala. Pueden sustituirse por renders propios conservando los nombres. Los tres ejemplos se identifican como estudios conceptuales,
+no como proyectos construidos o clientes verificados.
+La oferta Concept 48 sigue la referencia; la web indica que el plazo se
+confirma según alcance y recepción del brief completo.
+
+EDITAR
+index.html: textos, enlaces y correo.
+styles.css: diseño, colores y adaptación móvil.
+script.js: menú móvil y detalles de los tres conceptos.
+assets/: imágenes e icono.
+
+MAILING
+Cuando hayas publicado, usa la URL real de Cloudflare en el botón o pie de tu
+mailing. Correo de contacto: conceptst89@gmail.com.
+
+VERIFICACIÓN
+Se comprobaron los archivos locales, enlaces internos, contacto y sintaxis JS.
+No se verificó en navegador ni se publicó en la cuenta de Cloudflare.
+
+ACTUALIZAR TU SITIO EXISTENTE
+Abre webpagecs89 en Workers & Pages. Pulsa New deployment y carga los
+archivos de este ZIP descomprimido, con index.html en la raíz. Publica y
+recarga la web con Ctrl+Shift+R si aún ves imágenes anteriores.
+Esta entrega no modifica por sí sola tu despliegue público.

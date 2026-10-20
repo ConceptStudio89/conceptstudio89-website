@@ -1,0 +1,29 @@
+CONCEPTSTUDIO 89 / IMAGE SET V2
+
+Method: built-in image generation. Individually generated concept imagery,
+not photographs of completed studio commissions. Optimized WEBP copies are
+included under assets. The proportion study is a code-native SVG.
+
+Shared direction: photorealistic editorial architectural photography, crisp
+material detail, disciplined perspective, realistic lighting, warm bone,
+stone and obsidian palette, controlled chartreuse, no text or watermarks.
+
+PROMPT SET
+Hero: monumental gallery reception in warm pale concrete, sweeping curved
+skylight, stone reception desk on right, charcoal wall, person for scale.
+Exhibits: modular white illuminated display walls, dark ceiling with precise
+track lighting, polished concrete floor and a visitor.
+Branded spaces: stone reception counter, dark panel, chartreuse vertical
+accent wall and architectural concrete.
+Interiors: contemporary corporate lounge, warm stone, beige sofas, dark low
+table and daylight through windows overlooking the city.
+Tech: convention-center booth with suspended circular light feature,
+integrated blue image screens, black and white architecture and visitors.
+Fintech: dark pavilion, slender illuminated chartreuse rectangular frame,
+pale stone counter and display panels.
+Hospitality: warm limestone lounge, cove lighting, neutral sofas and black
+chairs with a floor-to-ceiling glazed partition.
+Architecture: monumental angular concrete staircase and sculptural wall
+planes, fine concrete texture, natural light and person for scale.
+Partners: minimal concrete atrium, curved opening, dramatic skylight and a
+person walking through the space.
