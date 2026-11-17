@@ -166,3 +166,43 @@
 @media(prefers-reduced-motion:reduce){
   .showcase-card-image img{transition:none}
 }
+
+/* Legible subpage typography across wide and narrow displays. */
+.service-page-grid>div,.service-columns>*,.service-faq>*,
+.service-cta>*,.showcase-card,.showcase-card-meta>*{min-width:0}
+.service-page-hero h1,.service-section h2,.service-showcase h2,
+.service-cta h2,.service-deliverables h3,.service-faq-item h3,
+.showcase-card-meta strong{
+  text-wrap:balance;
+  overflow-wrap:normal;
+}
+.service-intro,.service-columns>p,.service-deliverables p,.concept-study-intro,
+.concept-study-card>p,.service-faq-item p,.service-cta p{
+  text-wrap:pretty;
+  overflow-wrap:break-word;
+}
+.service-showcase .section-header{gap:18px}
+.service-showcase .section-side{text-align:right;white-space:normal}
+.concept-study-card .showcase-card-meta{flex-wrap:wrap;align-items:baseline;gap:7px 18px}
+.concept-study-card .showcase-card-meta span{text-align:left}
+.service-section h2,.service-showcase h2{max-width:19ch}
+.service-page-hero h1{max-width:13ch}
+@media(max-width:920px){
+  .service-page-hero h1{font-size:clamp(50px,6.2vw,72px)}
+  .service-page-grid{gap:clamp(20px,3vw,35px)}
+  .service-page-grid{grid-template-columns:minmax(0,1fr) minmax(0,.95fr)}
+}
+@media(max-width:850px){
+  .service-page-grid{grid-template-columns:1fr}
+  .service-page-hero h1{max-width:15ch}
+}
+@media(max-width:650px){
+  .service-showcase .showcase-grid{grid-template-columns:1fr}
+  .service-showcase .section-header{gap:12px}
+  .service-cta a{max-width:100%;white-space:normal}
+}
+@media(max-width:390px){
+  .service-page-hero h1{font-size:clamp(43px,11.6vw,58px)}
+  .service-section h2,.service-showcase h2,.service-cta h2{font-size:clamp(37px,10vw,49px)}
+  .service-visual-caption{font-size:9px;max-width:calc(100% - 30px)}
+}
