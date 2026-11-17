@@ -258,7 +258,7 @@
      <option value="Something else">Something else</option>
     </select>
     <label for="contact-brief">Your idea / brief</label><textarea id="contact-brief" name="brief" rows="4" maxlength="5000" placeholder="A few lines about your project…" required></textarea>
-    <div class="contact-honeypot" aria-hidden="true"><label for="contact-website">Leave this field empty</label><input id="contact-website" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+    <div class="contact-honeypot" hidden aria-hidden="true"><input id="contact-website" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-label="Spam prevention field"></div>
     <input type="hidden" name="_subject" value="New inquiry | ConceptStudio 89">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
