@@ -10,6 +10,7 @@
 <meta property="og:title" content="ConceptStudio 89 | Ideas. Proportion. Space.">
 <meta property="og:description" content="Brand identity, graphic design and 3D visualization. One idea, across every dimension.">
 <meta property="og:url" content="https://conceptstudio89.com/">
+<meta property="og:image" content="https://conceptstudio89.com/assets/hero-brand-process.webp">
 <link rel="canonical" href="https://conceptstudio89.com/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
@@ -32,7 +33,14 @@
  </a>
  <button class="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" type="button"><span></span><span></span></button>
  <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-  <a href="#services">Services</a>
+  <div class="nav-services">
+    <a class="nav-services-trigger" href="#services" aria-label="Explore our services">Services <span aria-hidden="true">⌄</span></a>
+    <div class="nav-services-menu" aria-label="Service pages">
+      <a href="branding/">Branding <span aria-hidden="true">↗</span></a>
+      <a href="graphic-design/">Graphic design <span aria-hidden="true">↗</span></a>
+      <a href="3d-visualization/">3D visualization <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
   <a href="#work">Selected work</a>
   <a href="#approach">Approach</a>
   <a href="#about">Our thinking</a>
@@ -63,12 +71,9 @@
 
  <section id="services" class="services section-shell" aria-labelledby="services-title">
   <div class="section-header"><span class="section-index">01 / WHAT WE DO</span><span class="section-rule"></span><span class="section-side">One idea. Multiple expressions.</span></div>
-  <div class="section-title-row">
-   <h2 id="services-title">Design that<br><em>breaks patterns.</em></h2>
-   <p>Bold thinking, sharp strategy and intentional craft. We design distinctive identities and graphic systems that go beyond a single image.</p>
-  </div>
   <div class="creative-manifesto" aria-label="Our creative point of view">
     <div class="manifesto-label"><span>OUR CREATIVE STANCE</span><span>CS / 89</span></div>
+    <h2 class="manifesto-heading" id="services-title">Design that <em>breaks patterns.</em></h2>
     <div class="manifesto-statement">
       <div class="manifesto-column manifesto-column-left">AI can generate<br>an <span>image.</span></div>
       <div class="manifesto-column manifesto-column-right"><em>We design what<br>makes it matter.</em></div>
@@ -76,30 +81,30 @@
     <div class="manifesto-bottom"><span>Not an automated graphics factory.</span><p>We bring human creative direction, original thinking and design discipline to every brand. Tools help us explore ideas, but they never replace our creative judgment.</p></div>
   </div>
   <div class="services-grid">
-   <article class="service-card">
-    <div class="service-art service-art-brand" aria-hidden="true"><span class="service-art-tag">IDENTITY / 01</span><span class="brand-sample">FORM<span class="brand-sample-star">✳</span></span><span class="service-art-bottom">FORM FOLLOWS MEANING.</span></div>
+   <a class="service-card service-card-link" href="branding/">
+    <div class="service-art service-art-photo"><img src="assets/service-branding-hero.webp" alt="Brand identity sketches, material samples and packaging studies in a creative studio" loading="lazy" decoding="async"><span class="service-art-tag">IDENTITY / 01</span><span class="service-art-bottom">FORM FOLLOWS MEANING.</span></div>
     <div class="service-body"><div class="service-heading"><span class="service-number">01</span><h3>Brand identity</h3></div>
      <p>Distinctive brands built on a clear point of view. More than a logo: a flexible visual language that people can recognize and remember.</p>
      <p class="service-detail">Brand direction · Logo systems · Color & type · Guidelines · Art direction</p>
-     <a class="service-link" href="#contact" data-service-select="Brand identity">Explore branding <span aria-hidden="true">↗</span></a>
+     <span class="service-link service-link-prominent">Discover Branding &amp; Identity <span aria-hidden="true">↗</span></span>
     </div>
-   </article>
-   <article class="service-card">
-    <div class="service-art service-art-graphic" aria-hidden="true"><span class="service-art-tag">GRAPHICS / 02</span><div class="poster-art"><span>MAKE<br>IT <i>MATTER</i></span><b>89°</b></div><span class="service-art-bottom">VISUALS WITH PURPOSE.</span></div>
+   </a>
+   <a class="service-card service-card-link" href="graphic-design/">
+    <div class="service-art service-art-photo"><img src="assets/service-graphic-design-hero.webp" alt="Graphic design workspace with editorial layouts, typography studies and print materials" loading="lazy" decoding="async"><span class="service-art-tag">GRAPHICS / 02</span><span class="service-art-bottom">VISUALS WITH PURPOSE.</span></div>
     <div class="service-body"><div class="service-heading"><span class="service-number">02</span><h3>Graphic design</h3></div>
      <p>We create graphics that communicate clearly across campaigns, presentations, print and digital platforms.</p>
      <p class="service-detail">Campaigns · Social assets · Editorial · Presentations · Print & event graphics</p>
-     <a class="service-link" href="#contact" data-service-select="Graphic design">Explore graphic design <span aria-hidden="true">↗</span></a>
+     <span class="service-link service-link-prominent">Discover Graphic Design <span aria-hidden="true">↗</span></span>
     </div>
-   </article>
-   <article class="service-card">
-    <div class="service-art service-art-3d"><img src="assets/branded-spaces-hq.webp" alt="Architectural brand environment visualization, concept study" loading="lazy"><span class="service-art-tag">DIMENSION / 03</span><span class="service-art-bottom">THINK BEYOND THE FLAT.</span></div>
+   </a>
+   <a class="service-card service-card-link" href="3d-visualization/">
+    <div class="service-art service-art-photo"><img src="assets/service-3d-visualization-hero.webp" alt="3D visualization workspace with architectural model, material palette and realistic renders" loading="lazy" decoding="async"><span class="service-art-tag">DIMENSION / 03</span><span class="service-art-bottom">THINK BEYOND THE FLAT.</span></div>
     <div class="service-body"><div class="service-heading"><span class="service-number">03</span><h3>3D & visualization <span class="plus-mark">+</span></h3></div>
      <p>Our added dimension. We extend graphic ideas into spaces, products and experiential concepts through modeling and realistic visualization.</p>
      <p class="service-detail">3D modeling · Exhibit concepts · Branded spaces · Renderings · Spatial graphics</p>
-     <a class="service-link" href="#contact" data-service-select="3D & visualization">Explore 3D <span aria-hidden="true">↗</span></a>
+     <span class="service-link service-link-prominent">Discover 3D &amp; Visualization <span aria-hidden="true">↗</span></span>
     </div>
-   </article>
+   </a>
   </div>
  </section>
 
@@ -261,7 +266,7 @@
 
 <footer class="footer">
  <a class="wordmark wordmark-footer" href="#home"><span class="wordmark-line"><strong>CONCEPT</strong><span>STUDIO</span><em>89</em></span><span class="wordmark-sub">Ideas. Proportion. Space.</span></a>
- <div class="footer-center"><span>Brand identity</span><span>Graphic design</span><span>3D visualization</span></div>
+ <div class="footer-center"><a href="branding/">Brand identity</a><a href="graphic-design/">Graphic design</a><a href="3d-visualization/">3D visualization</a></div>
  <div class="footer-end"><a href="mailto:conceptst89@gmail.com">Let’s create ↗</a><span>© 2026 ConceptStudio 89</span></div>
 </footer>
 
