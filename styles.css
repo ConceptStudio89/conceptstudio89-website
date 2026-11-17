@@ -842,3 +842,35 @@ a{color:inherit;text-decoration:none}
 @media(max-width:540px){
   .hero-grid .hero-process-art{height:310px;min-height:0}
 }
+
+/* Navigation: visible service discovery on all pages */
+.nav-services{position:relative;display:flex;align-items:center;align-self:stretch}
+.nav-services-trigger{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:1px;font-weight:700;text-transform:uppercase;white-space:nowrap}
+.nav-services-trigger span{color:#729000;font-size:17px;line-height:1}
+.nav-services-menu{position:absolute;top:calc(100% - 2px);left:-21px;min-width:245px;display:grid;gap:2px;padding:12px;background:#0b0b0b;color:#e6e6e6;border-top:3px solid var(--accent);box-shadow:0 20px 36px rgba(0,0,0,.16);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .18s,transform .18s,visibility .18s}
+.nav-services:hover .nav-services-menu,.nav-services:focus-within .nav-services-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-services-menu a{display:flex;justify-content:space-between;gap:16px;padding:14px 12px;border-bottom:1px solid #454545;font-size:12px;font-weight:550}
+.nav-services-menu a:last-child{border-bottom:0}
+.nav-services-menu a:hover,.nav-services-menu a:focus-visible{background:#282828;color:var(--accent)}
+.service-link-prominent{margin:0 -1px -1px;padding:17px 18px;background:var(--accent);border:0;min-height:57px;align-items:center;color:#0b0b0b;transition:background .2s ease}
+.service-card:hover .service-link-prominent,.service-link-prominent:focus-visible{background:#bfe900}
+.service-link-prominent span{font-size:23px;line-height:1}
+.service-card .service-body{padding-bottom:0}
+.service-card .service-body .service-link-prominent{margin-top:auto}
+/* Selected Work: charcoal, stone and signal green until reveal */
+.brand-work-card .portfolio-cover{filter:none;isolation:isolate;background-color:#282828}
+.brand-work-card .portfolio-cover::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(130deg,rgba(40,40,40,.28),rgba(215,255,0,.13)),rgba(80,89,73,.25);backdrop-filter:grayscale(1);-webkit-backdrop-filter:grayscale(1);pointer-events:none;transition:opacity .45s ease}
+.brand-work-card .portfolio-cover::after{z-index:1;background:linear-gradient(180deg,rgba(11,11,11,.11),transparent 42%,rgba(11,11,11,.07))}
+.brand-work-card:hover .portfolio-cover::before,.brand-work-card:focus-visible .portfolio-cover::before{opacity:0}
+.brand-work-card .work-meta{transition:border-color .3s ease}
+.brand-work-card:hover .work-meta,.brand-work-card:focus-visible .work-meta{border-color:#84A500}
+.brand-work-card .portfolio-cover-index{background:#282828;color:var(--accent)}
+@media(hover:none){.brand-work-card .portfolio-cover::before{opacity:0}}
+@media(max-width:850px){
+ .nav-services{display:block;align-self:auto}
+ .nav-services-trigger{padding:16px 0;border-bottom:1px solid #ccc}
+ .nav-services-menu{position:static;visibility:visible;opacity:1;transform:none;min-width:0;background:transparent;color:#282828;padding:0 0 8px 10px;box-shadow:none;border-top:0;transition:none;gap:0}
+ .nav-services-menu a{padding:10px 8px;font-size:11px;border-bottom:1px solid #d5d5d0}
+ .nav-services-menu a:hover,.nav-services-menu a:focus-visible{color:#0b0b0b;background:#d7ff00}
+}
+@media(prefers-reduced-motion:reduce){.brand-work-card .portfolio-cover::before,.nav-services-menu{transition:none}}
