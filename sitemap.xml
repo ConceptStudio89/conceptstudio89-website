@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://conceptstudio89.com/</loc></url>
-  <url><loc>https://conceptstudio89.com/branding/</loc></url>
-  <url><loc>https://conceptstudio89.com/graphic-design/</loc></url>
-  <url><loc>https://conceptstudio89.com/3d-visualization/</loc></url>
+  <url>
+    <loc>https://conceptstudio89.com/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://conceptstudio89.com/branding/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://conceptstudio89.com/graphic-design/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://conceptstudio89.com/3d-visualization/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
 </urlset>

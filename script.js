@@ -27,16 +27,71 @@
 
   const contactForm=document.getElementById('contact-form');
   if(contactForm){
-    contactForm.addEventListener('submit',function(event){
+    const submitButton=document.getElementById('contact-submit');
+    const feedback=document.getElementById('contact-feedback');
+    let sending=false;
+
+    function showContactFeedback(message,type){
+      feedback.hidden=false;
+      feedback.textContent=message;
+      feedback.className='form-feedback is-'+type;
+    }
+
+    contactForm.addEventListener('submit',async function(event){
       event.preventDefault();
-      if(!contactForm.reportValidity())return;
+      if(sending||!contactForm.reportValidity())return;
+
       const name=document.getElementById('contact-company').value.trim();
+      const email=document.getElementById('contact-email').value.trim();
       const service=document.getElementById('contact-service').value.trim();
       const brief=document.getElementById('contact-brief').value.trim();
-      if(!name||!service||!brief)return;
-      const subject='ConceptStudio 89 | '+service+' | '+name;
-      const body=['Hi ConceptStudio 89,','','I would like to discuss a project.','Company: '+name,'Service: '+service,'','Project brief:',brief,'','Please let me know the next steps.'].join('\n');
-      window.location.href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      if(!name||!email||!service||!brief)return;
+
+      // Quietly discard spam that fills the hidden honeypot input.
+      if(contactForm.elements['_honey'].value.trim()){
+        showContactFeedback('Thank you. Your request has been received.','success');
+        contactForm.reset();
+        return;
+      }
+
+      sending=true;
+      submitButton.disabled=true;
+      submitButton.setAttribute('aria-busy','true');
+      submitButton.innerHTML='Sending your inquiry…';
+      feedback.hidden=true;
+
+      const payload=new FormData(contactForm);
+      payload.set('_subject','CS89 | '+service+' | '+name.slice(0,65));
+
+      try{
+        const response=await fetch(contactForm.action,{
+          method:'POST',
+          body:payload,
+          headers:{'Accept':'application/json'}
+        });
+        const result=await response.json();
+        // FormSubmit may return "false" as a non-empty string; do not treat it as success.
+        const accepted=response.ok&&(result.success===true||result.success==='true');
+        if(!accepted){
+          throw new Error(typeof result.message==='string'?result.message:'Unable to submit');
+        }
+
+        contactForm.reset();
+        showContactFeedback('Thanks for reaching out. Your inquiry was submitted. We will get back to you by email.','success');
+      }catch(error){
+        const activation=error&&/activat|confirm|verify/i.test(String(error.message||''));
+        showContactFeedback(
+          activation
+            ? 'The contact form is awaiting email activation. Please email us directly at conceptst89@gmail.com for now.'
+            : 'Your message could not be sent right now. Please try again or email conceptst89@gmail.com.',
+          'error'
+        );
+      }finally{
+        sending=false;
+        submitButton.disabled=false;
+        submitButton.removeAttribute('aria-busy');
+        submitButton.innerHTML='Send project inquiry <span aria-hidden="true">↗</span>';
+      }
     });
   }
 
