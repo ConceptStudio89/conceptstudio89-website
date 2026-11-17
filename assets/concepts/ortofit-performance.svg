@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-<title id="title">Ortofit performance support gear concept</title>
+<title id="title">Zyrkavo performance support gear concept</title>
 <desc id="desc">Realistic style product mockup of a fictional knee compression sleeve and matching retail packaging on a moody athletic studio backdrop.</desc>
 <defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151719"/><stop offset=".55" stop-color="#33383a"/><stop offset="1" stop-color="#777776"/></linearGradient>
@@ -25,7 +25,7 @@
 <path d="M68 40h251v322H68z" fill="none" stroke="#777b76" stroke-width=".8" opacity=".35"/>
 <g transform="translate(77 63)">
 <path d="M1 20h34l17-19H18Z" fill="#d7ff00"/><path d="M42 0h30L53 23H23Z" fill="#d7ff00"/>
-<text x="87" y="25" font-family="Arial,sans-serif" font-weight="800" font-size="42" fill="#f5f5f0" letter-spacing="-2">ortofit</text>
+<text x="87" y="25" font-family="Arial,sans-serif" font-weight="800" font-size="42" fill="#f5f5f0" letter-spacing="-2">zyrkavo</text>
 <text x="0" y="58" font-family="Arial,sans-serif" font-size="11" fill="#d7ff00" letter-spacing="2.7">ACTIVE SUPPORT GEAR</text>
 <text x="0" y="134" font-family="Arial,sans-serif" font-weight="600" font-size="30" fill="#eaeae5">KNEE SUPPORT</text>
 <text x="0" y="161" font-family="Arial,sans-serif" font-size="12" letter-spacing="1.1" fill="#b9bbba">MOVEMENT / RECOVERY / COMFORT</text>
@@ -49,7 +49,7 @@
 </g>
 <g transform="translate(86 145)">
 <text x="0" y="0" font-family="Arial,sans-serif" font-size="14" letter-spacing="4" fill="#d7ff00">CONCEPT STUDY / 02</text>
-<text x="0" y="102" font-family="Arial,sans-serif" font-weight="800" font-size="89" letter-spacing="-4" fill="#f2f4ed">ortofit</text>
+<text x="0" y="102" font-family="Arial,sans-serif" font-weight="800" font-size="89" letter-spacing="-4" fill="#f2f4ed">zyrkavo</text>
 <path d="M3 130h242" stroke="#d7ff00" stroke-width="2"/>
 <text x="0" y="176" font-family="Arial,sans-serif" font-size="20" fill="#e7e8e3">PERFORMANCE SUPPORT</text>
 <text x="0" y="207" font-family="Arial,sans-serif" font-size="15" fill="#c1c5bd">Product visualization</text>
