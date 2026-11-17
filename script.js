@@ -41,26 +41,41 @@
   }
 
   const cases={
-    identity:{
-      kicker:'CS89 / 001 — OWN IDENTITY',
-      title:'A system built around 89.',
-      description:'Our own visual identity: a restrained neutral palette, chartreuse signal color, confident typography and a modular rhythm inspired by Fibonacci. This is a working demonstration of the brand-system thinking we bring to each project.',
-      tags:['Brand strategy','Logo system','Typography','Visual guidelines'],
-      service:'Brand identity'
+    benavides:{
+      kicker:'CS89 / 01 — BRAND IDENTITY + PACKAGING',
+      title:'Benavides Bakery',
+      description:'A warm identity rooted in the ritual of sharing bread. The intertwined double-B monogram, expressive lettering and a brown, cream and golden palette come together across bakery packaging, printed applications and product presentation. Brand line: “De la masa al alma.”',
+      tags:['Brand identity','Packaging design','Logo system','Graphic applications'],
+      service:'Brand identity',
+      image:'assets/portfolio/benavides-sprite.webp',
+      captions:['Packaging / bread box','Packaging / paper bags','Product graphics / coffee and bakery','Brand stationery / printed identity']
     },
-    graphic:{
-      kicker:'CS89 / 002 — SELF-INITIATED EXPLORATION',
-      title:'Graphics with a point of view.',
-      description:'An illustrative editorial composition created to explore typographic contrast, scale, alignment and visual hierarchy. This is a studio experiment, not commissioned client work.',
-      tags:['Graphic design','Art direction','Typography','Editorial'],
-      service:'Graphic design'
+    eterra:{
+      kicker:'CS89 / 02 — BRAND IDENTITY + 3D APPLICATIONS',
+      title:'ETERRA',
+      description:'A visual identity connecting Colombian cultural roots with contemporary 3D-printed accessories. Orange and blue establish a confident contrast; the brand universe extends across product imagery, packaging and wearable forms.',
+      tags:['Brand identity','Creative direction','3D product visuals','Packaging'],
+      service:'Brand identity',
+      image:'assets/portfolio/eterra-sprite.webp',
+      captions:['3D accessories / jewelry','Brand identity / campaign','Product / brand application','Product collection / 3D forms']
     },
-    spatial:{
-      kicker:'CS89 / 003 — 3D CONCEPT STUDY',
-      title:'Brand thinking in three dimensions.',
-      description:'An example of our spatial visualization capabilities. Graphic hierarchy, atmosphere, material and human scale help turn a visual language into an environment. Concept study, not a fabricated installation.',
-      tags:['3D design','Spatial concepts','Visualization','Exhibit graphics'],
-      service:'3D & visualization'
+    neuralinker:{
+      kicker:'CS89 / 03 — TECHNOLOGY BRAND SYSTEM',
+      title:'NeuraLinker',
+      description:'A technology-focused identity built around connection and intelligence. An expressive circular symbol, electric blue, neon green and charcoal are deployed through stationery, digital interfaces and large-format brand communication.',
+      tags:['Technology branding','Logo system','Digital design','Visual applications'],
+      service:'Brand identity',
+      image:'assets/portfolio/neuralinker-sprite.webp',
+      captions:['Business card system','Mark / identity construction','Outdoor media / advertising study','Digital mobile assets']
+    },
+    solaris:{
+      kicker:'CS89 / 04 — BRANDING + CAMPAIGN GRAPHICS',
+      title:'Solaris Tech',
+      description:'A clean-energy identity rooted in optimism, accessibility and innovation. The solar-inspired symbol, bright yellow and deep blue combine across transit advertising, app presentation and logo applications.',
+      tags:['Brand identity','Advertising graphics','Logo system','Digital applications'],
+      service:'Graphic design',
+      image:'assets/portfolio/solaris-sprite.webp',
+      captions:['Transit advertising / posters','Logo / brand system','Digital app / brand application','Logo variations / construction']
     }
   };
   const caseDialog=document.getElementById('case-dialog');
@@ -70,6 +85,7 @@
     const kicker=document.getElementById('case-kicker');
     const description=document.getElementById('case-description');
     const tags=document.getElementById('case-tags');
+    const gallery=document.getElementById('case-gallery');
     const cta=document.getElementById('case-cta');
     let opener=null;
 
@@ -86,6 +102,22 @@
           const span=document.createElement('span');
           span.textContent=label;
           tags.appendChild(span);
+        });
+        gallery.replaceChildren();
+        study.captions.forEach(function(caption,index){
+          const item=document.createElement('figure');
+          item.className='case-gallery-item';
+          const picture=document.createElement('div');
+          picture.className='case-gallery-image';
+          picture.style.backgroundImage='url("'+study.image+'")';
+          picture.style.backgroundSize='200% 200%';
+          picture.style.backgroundPosition=(index%2===0?'0%':'100%')+' '+(index<2?'0%':'100%');
+          picture.setAttribute('role','img');
+          picture.setAttribute('aria-label',caption);
+          const label=document.createElement('figcaption');
+          label.textContent=caption;
+          item.append(picture,label);
+          gallery.appendChild(item);
         });
         cta.setAttribute('data-service-select',study.service);
         caseDialog.showModal();
