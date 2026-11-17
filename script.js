@@ -34,7 +34,7 @@
       const service=document.getElementById('contact-service').value.trim();
       const brief=document.getElementById('contact-brief').value.trim();
       if(!name||!service||!brief)return;
-      const subject='ConceptStudio 89 - '+service+' - '+name;
+      const subject='ConceptStudio 89 | '+service+' | '+name;
       const body=['Hi ConceptStudio 89,','','I would like to discuss a project.','Company: '+name,'Service: '+service,'','Project brief:',brief,'','Please let me know the next steps.'].join('\n');
       window.location.href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     });
@@ -42,36 +42,36 @@
 
   const cases={
     benavides:{
-      kicker:'CS89 / 01 — BRAND IDENTITY + PACKAGING',
+      kicker:'CS89 / 01: BRAND IDENTITY + PACKAGING',
       title:'Benavides Bakery',
-      description:'A warm identity rooted in the ritual of sharing bread. The intertwined double-B monogram, expressive lettering and a brown, cream and golden palette come together across bakery packaging, printed applications and product presentation. Brand line: “De la masa al alma.”',
+      description:'A warm identity rooted in the ritual of sharing bread. The intertwined BB monogram, expressive lettering and a palette of brown, cream and gold come together across bakery packaging, print materials and product imagery. Brand line: “De la masa al alma.”',
       tags:['Brand identity','Packaging design','Logo system','Graphic applications'],
       service:'Brand identity',
       image:'assets/portfolio/benavides-sprite.webp',
       captions:['Packaging / bread box','Packaging / paper bags','Product graphics / coffee and bakery','Brand stationery / printed identity']
     },
     eterra:{
-      kicker:'CS89 / 02 — BRAND IDENTITY + 3D APPLICATIONS',
+      kicker:'CS89 / 02: BRAND IDENTITY + 3D APPLICATIONS',
       title:'ETERRA',
-      description:'A visual identity connecting Colombian cultural roots with contemporary 3D-printed accessories. Orange and blue establish a confident contrast; the brand universe extends across product imagery, packaging and wearable forms.',
+      description:'A visual identity connecting Colombian cultural roots with contemporary accessories made with 3D printing. Orange and blue establish a confident contrast; the brand universe extends across product imagery, packaging and wearable forms.',
       tags:['Brand identity','Creative direction','3D product visuals','Packaging'],
       service:'Brand identity',
       image:'assets/portfolio/eterra-sprite.webp',
       captions:['3D accessories / jewelry','Brand identity / campaign','Product / brand application','Product collection / 3D forms']
     },
     neuralinker:{
-      kicker:'CS89 / 03 — TECHNOLOGY BRAND SYSTEM',
+      kicker:'CS89 / 03: TECHNOLOGY BRAND SYSTEM',
       title:'NeuraLinker',
-      description:'A technology-focused identity built around connection and intelligence. An expressive circular symbol, electric blue, neon green and charcoal are deployed through stationery, digital interfaces and large-format brand communication.',
+      description:'A technology identity inspired by the connection between people and intelligence. An expressive circular symbol, electric blue, neon green and charcoal are deployed through stationery, digital interfaces and large scale brand communication.',
       tags:['Technology branding','Logo system','Digital design','Visual applications'],
       service:'Brand identity',
       image:'assets/portfolio/neuralinker-sprite.webp',
       captions:['Business card system','Mark / identity construction','Outdoor media / advertising study','Digital mobile assets']
     },
     solaris:{
-      kicker:'CS89 / 04 — BRANDING + CAMPAIGN GRAPHICS',
+      kicker:'CS89 / 04: BRANDING + CAMPAIGN GRAPHICS',
       title:'Solaris Tech',
-      description:'A clean-energy identity rooted in optimism, accessibility and innovation. The solar-inspired symbol, bright yellow and deep blue combine across transit advertising, app presentation and logo applications.',
+      description:'An identity for clean energy inspired by optimism, accessibility and innovation. The symbol inspired by the sun, bright yellow and deep blue combine across transit advertising, app presentation and logo applications.',
       tags:['Brand identity','Advertising graphics','Logo system','Digital applications'],
       service:'Graphic design',
       image:'assets/portfolio/solaris-sprite.webp',
