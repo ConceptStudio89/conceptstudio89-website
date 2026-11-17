@@ -574,14 +574,24 @@ a{color:inherit;text-decoration:none}
 /* Real portfolio case studies, rendered from the original project PDFs. */
 .work-grid-portfolio{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:36px 19px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
 }
-.work-grid-portfolio .work-card{grid-column:auto}
-.work-grid-portfolio .work-preview{height:auto;aspect-ratio:16 / 9}
+.work-grid-portfolio .work-card{
+  grid-column:auto;
+  min-width:0;
+}
+.work-grid-portfolio .work-preview{
+  height:auto;
+  aspect-ratio:16 / 9;
+  min-height:0;
+  /* One 720 × 405 native sprite quadrant per card.
+     At a quarter-page width, this avoids enlarging the source. */
+}
 .portfolio-cover{
   background-repeat:no-repeat;
   background-size:200% 200%;
+  image-rendering:auto;
   position:relative;
 }
 .portfolio-cover:after{
@@ -603,25 +613,37 @@ a{color:inherit;text-decoration:none}
   background:rgba(11,11,11,.72);
 }
 .portfolio-cover-index{
-  left:19px;
-  top:19px;
-  padding:7px 10px;
-  font:10px/1.3 var(--mono);
-  letter-spacing:.7px;
+  left:10px;
+  top:10px;
+  padding:6px 8px;
+  font:8px/1.3 var(--mono);
+  letter-spacing:.45px;
 }
 .portfolio-cover-cta{
-  right:17px;
-  bottom:17px;
+  right:10px;
+  bottom:10px;
   display:grid;
   place-items:center;
-  width:42px;
-  height:42px;
-  font-size:23px;
+  width:33px;
+  height:33px;
+  font-size:19px;
   transition:background .2s ease,transform .2s ease;
 }
 .brand-work-card:hover .portfolio-cover-cta{background:#d7ff00;color:#0b0b0b;transform:translate(2px,-2px)}
-.work-grid-portfolio .work-meta{grid-template-columns:1.25fr 1fr auto}
-.work-grid-portfolio .work-meta>span:nth-child(2){display:block}
+.work-grid-portfolio .work-meta{
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:7px;
+  min-height:54px;
+  padding:13px 0;
+  font-size:9px;
+}
+.work-grid-portfolio .work-meta>span:first-child{
+  font-family:var(--font);
+  font-size:12px;
+  font-weight:650;
+  letter-spacing:.2px;
+}
+.work-grid-portfolio .work-meta>span:nth-child(2){display:none}
 .portfolio-provenance{
   font:10px/1.5 var(--mono);
   color:#777;
@@ -645,6 +667,11 @@ a{color:inherit;text-decoration:none}
   letter-spacing:.15px;
 }
 .case-gallery-note{font:10px/1.5 var(--mono)!important;color:#888!important;margin:14px 0 8px!important}
+@media(max-width:1000px){
+  .work-grid-portfolio{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+  .work-grid-portfolio .work-meta>span:nth-child(2){display:block;grid-column:1}
+  .work-grid-portfolio .work-meta{grid-template-columns:minmax(0,1fr) auto}
+}
 @media(max-width:850px){
   .creative-manifesto{grid-template-columns:1fr;gap:25px}
   .manifesto-label{flex-direction:row;grid-row:auto}
