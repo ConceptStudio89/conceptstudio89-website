@@ -888,3 +888,35 @@ a{color:inherit;text-decoration:none}
  .nav-services-menu a:hover,.nav-services-menu a:focus-visible{color:#0b0b0b;background:#d7ff00}
 }
 @media(prefers-reduced-motion:reduce){.brand-work-card .portfolio-cover::before,.nav-services-menu{transition:none}}
+
+/* Responsive editorial typography: avoid orphaned words and fragile wraps. */
+.hero h1,.manifesto-heading,.section-title-row h2,.approach h2,.philosophy-copy h2,
+.dimension-copy h2,.contact-copy h2,.service-heading h3,.process-step h3{
+  text-wrap:balance;
+  overflow-wrap:normal;
+}
+.hero-lead,.manifesto-bottom p,.section-title-row>p,.service-body>p,
+.process-step p,.approach-copy>p,.philosophy-copy>p,.dimension-copy>p,
+.contact-copy>p,.portfolio-provenance,.case-dialog p{
+  text-wrap:pretty;
+  overflow-wrap:break-word;
+}
+.service-body,.service-card,.work-card,.work-meta,.approach-copy,.contact-copy{
+  min-width:0;
+}
+.work-grid-portfolio .work-meta>span:first-child{
+  overflow-wrap:normal;
+  text-wrap:balance;
+}
+@media(max-width:620px){
+  .manifesto-heading{font-size:clamp(38px,10vw,58px);max-width:15ch;margin-inline:auto}
+  .manifesto-statement{width:100%;max-width:100%;justify-content:stretch}
+  .manifesto-column{overflow-wrap:normal}
+  .manifesto-bottom{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+  .hero h1{font-size:clamp(47px,12.9vw,60px)}
+  .manifesto-statement{font-size:clamp(30px,8.3vw,39px)}
+  .section-header{gap:12px}
+  .section-side{white-space:normal;text-align:right}
+}
