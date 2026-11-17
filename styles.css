@@ -866,7 +866,7 @@ a{color:inherit;text-decoration:none}
 .brand-work-card:hover .work-meta,.brand-work-card:focus-visible .work-meta{border-color:#84A500}
 .brand-work-card .portfolio-cover-index{background:#282828;color:var(--accent)}
 @media(hover:none){.brand-work-card .portfolio-cover::before{opacity:0}}
-@media(max-width:850px){
+@media(max-width:959px){
  .nav-services{display:block;align-self:auto}
  .nav-services-trigger{padding:16px 0;border-bottom:1px solid #ccc}
  .nav-services-menu{position:static;visibility:visible;opacity:1;transform:none;min-width:0;background:transparent;color:#282828;padding:0 0 8px 10px;box-shadow:none;border-top:0;transition:none;gap:0}
