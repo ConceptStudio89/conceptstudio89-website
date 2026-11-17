@@ -1,97 +1,144 @@
-const menu = document.querySelector('.menu-toggle');
-const navigation = document.getElementById('navigation');
-function closeMenu(){navigation.classList.remove('open');menu.setAttribute('aria-expanded','false');}
-menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));navigation.classList.toggle('open',open);});
-navigation.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
-document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
-const studies={
-tech:{title:'TECH / Exhibit concept',image:'assets/tech-hq.webp',description:'A 20 × 40 technology exhibit study exploring a suspended circular feature, immersive screens and a clear visitor journey. An illustrative direction for discussing your own exhibit brief.'},
-fintech:{title:'FINTECH / Branded experience',image:'assets/fintech-hq.webp',description:'A 30 × 40 branded experience study combining architectural frames, material contrast and a controlled chartreuse accent. An illustrative direction for exploring your brand in space.'},
-hospitality:{title:'HOSPITALITY / Interior concept',image:'assets/hospitality-hq.webp',description:'A 1,800 sq ft hospitality interior study with warm materials, layered lighting and conversational seating. An illustrative direction for exploring human scale and atmosphere.'}
-};
-const dialog=document.getElementById('project-dialog');
-document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const study=studies[button.dataset.project];document.getElementById('dialog-title').textContent=study.title;const image=document.getElementById('dialog-image');image.src=study.image;image.alt=study.title;document.getElementById('dialog-description').textContent=study.description;document.getElementById('dialog-link').href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent('Project inquiry | '+study.title);dialog.showModal();}));
-dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
-dialog.addEventListener('click',event=>{if(event.target===dialog){const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dialog.close();}});
 
-
-const serviceStudies={
-  exhibits:{
-    index:'01',
-    title:'Exhibits',
-    image:'assets/exhibits-hq.webp',
-    intro:'From exhibit strategy and visitor flow to form, graphics, materials and the final presentation-ready visual.',
-    subject:'Exhibit design inquiry',
-    steps:[
-      {no:'01',icon:'brief',title:'Brief + intent',text:'Objectives, booth size, audience, program and non-negotiables define the design problem.'},
-      {no:'02',icon:'skeleton',title:'Spatial skeleton',text:'Zones, circulation, sightlines and primary architectural masses establish the booth logic.'},
-      {no:'03',icon:'brand',title:'Brand integration',text:'Graphics, hierarchy and signature forms translate the brand into a spatial language.'},
-      {no:'04',icon:'material',title:'Material + light',text:'Surface, color, lighting and AV direction create depth, atmosphere and visual focus.'},
-      {no:'05',icon:'final',title:'Final visual',text:'The approved direction is resolved into a polished image ready to communicate the concept.'}
-    ]
-  },
-  branded:{
-    index:'02',
-    title:'Branded Spaces',
-    image:'assets/branded-spaces-hq.webp',
-    intro:'From brand DNA to a physical environment where graphic language, architecture and experience work as one system.',
-    subject:'Branded space inquiry',
-    steps:[
-      {no:'01',icon:'brief',title:'Brand decode',text:'Identity, tone, audience and key messages are translated into spatial priorities.'},
-      {no:'02',icon:'skeleton',title:'Experience map',text:'Arrival, interaction, focal moments and movement establish the experience sequence.'},
-      {no:'03',icon:'brand',title:'Spatial identity',text:'Frames, volumes, graphics and color become a recognizable three-dimensional brand system.'},
-      {no:'04',icon:'material',title:'Atmosphere',text:'Materials, contrast, lighting and furniture define the emotional character of the environment.'},
-      {no:'05',icon:'final',title:'Final visual',text:'The system is brought together in a refined image that communicates the complete branded experience.'}
-    ]
-  },
-  interiors:{
-    index:'03',
-    title:'Interiors',
-    image:'assets/interiors-hq.webp',
-    intro:'From program and human scale to composition, materiality, lighting and a finished interior visualization.',
-    subject:'Interior concept inquiry',
-    steps:[
-      {no:'01',icon:'brief',title:'Program',text:'Use, adjacencies, people, functional needs and atmosphere establish the interior brief.'},
-      {no:'02',icon:'skeleton',title:'Planning',text:'Circulation, furniture zones, focal points and proportions organize the room.'},
-      {no:'03',icon:'brand',title:'Form + detail',text:'Architectural elements, millwork and spatial gestures shape the character of the space.'},
-      {no:'04',icon:'material',title:'Material + light',text:'Texture, color temperature, daylight and artificial light create depth and comfort.'},
-      {no:'05',icon:'final',title:'Final visual',text:'The developed interior is resolved into a realistic image for review, presentation and decision-making.'}
-    ]
+/* ConceptStudio 89 — independent creative studio */
+(function(){
+  const menu=document.querySelector('.menu-toggle');
+  const nav=document.getElementById('site-nav');
+  if(menu&&nav){
+    function closeMenu(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');}
+    menu.addEventListener('click',function(){
+      const opened=menu.getAttribute('aria-expanded')==='true';
+      nav.classList.toggle('open',!opened);
+      menu.setAttribute('aria-expanded',String(!opened));
+      menu.setAttribute('aria-label',opened?'Open navigation':'Close navigation');
+    });
+    nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',closeMenu);});
+    document.addEventListener('keydown',function(event){if(event.key==='Escape')closeMenu();});
+    document.addEventListener('click',function(event){
+      if(!nav.contains(event.target)&&!menu.contains(event.target))closeMenu();
+    });
   }
-};
 
-const serviceDialog=document.getElementById('service-process-dialog');
-const serviceSteps=document.getElementById('service-process-steps');
-
-document.querySelectorAll('[data-service]').forEach(button=>{
-  button.addEventListener('click',()=>{
-    const study=serviceStudies[button.dataset.service];
-    document.getElementById('service-process-index').textContent=study.index;
-    document.getElementById('service-process-title').textContent=study.title;
-    document.getElementById('service-process-intro').textContent=study.intro;
-    const processImage=document.getElementById('service-process-image');
-    processImage.src=study.image;
-    processImage.alt=study.title+' final concept visual';
-    serviceSteps.innerHTML=study.steps.map(step=>`
-      <article class="process-step" data-icon="${step.icon}">
-        <div class="process-step-icon" aria-hidden="true"></div>
-        <span class="step-no">${step.no}</span>
-        <h3>${step.title}</h3>
-        <p>${step.text}</p>
-      </article>
-    `).join('');
-    document.getElementById('service-process-contact').href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent(study.subject);
-    serviceDialog.showModal();
+  const select=document.getElementById('contact-service');
+  document.querySelectorAll('[data-service-select]').forEach(function(link){
+    link.addEventListener('click',function(){
+      if(select)select.value=link.getAttribute('data-service-select');
+    });
   });
-});
 
-document.querySelector('.service-process-close').addEventListener('click',()=>serviceDialog.close());
-serviceDialog.addEventListener('click',event=>{
-  if(event.target===serviceDialog){
-    const box=serviceDialog.getBoundingClientRect();
-    if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)serviceDialog.close();
+  const contactForm=document.getElementById('contact-form');
+  if(contactForm){
+    contactForm.addEventListener('submit',function(event){
+      event.preventDefault();
+      if(!contactForm.reportValidity())return;
+      const name=document.getElementById('contact-company').value.trim();
+      const service=document.getElementById('contact-service').value.trim();
+      const brief=document.getElementById('contact-brief').value.trim();
+      if(!name||!service||!brief)return;
+      const subject='ConceptStudio 89 | '+service+' | '+name;
+      const body=['Hi ConceptStudio 89,','','I would like to discuss a project.','Company: '+name,'Service: '+service,'','Project brief:',brief,'','Please let me know the next steps.'].join('\n');
+      window.location.href='mailto:conceptst89@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    });
   }
-});
+
+  const cases={
+    benavides:{
+      kicker:'CS89 / 01: BRAND IDENTITY + PACKAGING',
+      title:'Benavides Bakery',
+      description:'A warm identity rooted in the ritual of sharing bread. The intertwined BB monogram, expressive lettering and a palette of brown, cream and gold come together across bakery packaging, print materials and product imagery. Brand line: “De la masa al alma.”',
+      tags:['Brand identity','Packaging design','Logo system','Graphic applications'],
+      service:'Brand identity',
+      image:'assets/portfolio/benavides-sprite.webp',
+      captions:['Packaging / bread box','Packaging / paper bags','Product graphics / coffee and bakery','Brand stationery / printed identity']
+    },
+    eterra:{
+      kicker:'CS89 / 02: BRAND IDENTITY + 3D APPLICATIONS',
+      title:'ETERRA',
+      description:'A visual identity connecting Colombian cultural roots with contemporary accessories made with 3D printing. Orange and blue establish a confident contrast; the brand universe extends across product imagery, packaging and wearable forms.',
+      tags:['Brand identity','Creative direction','3D product visuals','Packaging'],
+      service:'Brand identity',
+      image:'assets/portfolio/eterra-sprite.webp',
+      captions:['3D accessories / jewelry','Brand identity / campaign','Product / brand application','Product collection / 3D forms']
+    },
+    neuralinker:{
+      kicker:'CS89 / 03: TECHNOLOGY BRAND SYSTEM',
+      title:'NeuraLinker',
+      description:'A technology identity inspired by the connection between people and intelligence. An expressive circular symbol, electric blue, neon green and charcoal are deployed through stationery, digital interfaces and large scale brand communication.',
+      tags:['Technology branding','Logo system','Digital design','Visual applications'],
+      service:'Brand identity',
+      image:'assets/portfolio/neuralinker-sprite.webp',
+      captions:['Business card system','Mark / identity construction','Outdoor media / advertising study','Digital mobile assets']
+    },
+    solaris:{
+      kicker:'CS89 / 04: BRANDING + CAMPAIGN GRAPHICS',
+      title:'Solaris Tech',
+      description:'An identity for clean energy inspired by optimism, accessibility and innovation. The symbol inspired by the sun, bright yellow and deep blue combine across transit advertising, app presentation and logo applications.',
+      tags:['Brand identity','Advertising graphics','Logo system','Digital applications'],
+      service:'Graphic design',
+      image:'assets/portfolio/solaris-sprite.webp',
+      captions:['Transit advertising / posters','Logo / brand system','Digital app / brand application','Logo variations / construction']
+    }
+  };
+  const caseDialog=document.getElementById('case-dialog');
+  if(caseDialog){
+    const close=caseDialog.querySelector('.case-close');
+    const title=document.getElementById('case-title');
+    const kicker=document.getElementById('case-kicker');
+    const description=document.getElementById('case-description');
+    const tags=document.getElementById('case-tags');
+    const gallery=document.getElementById('case-gallery');
+    const cta=document.getElementById('case-cta');
+    let opener=null;
+
+    document.querySelectorAll('[data-work]').forEach(function(button){
+      button.addEventListener('click',function(){
+        const study=cases[button.getAttribute('data-work')];
+        if(!study)return;
+        opener=button;
+        kicker.textContent=study.kicker;
+        title.textContent=study.title;
+        description.textContent=study.description;
+        tags.replaceChildren();
+        study.tags.forEach(function(label){
+          const span=document.createElement('span');
+          span.textContent=label;
+          tags.appendChild(span);
+        });
+        gallery.replaceChildren();
+        study.captions.forEach(function(caption,index){
+          const item=document.createElement('figure');
+          item.className='case-gallery-item';
+          const picture=document.createElement('div');
+          picture.className='case-gallery-image';
+          picture.style.backgroundImage='url("'+study.image+'")';
+          picture.style.backgroundSize='200% 200%';
+          picture.style.backgroundPosition=(index%2===0?'0%':'100%')+' '+(index<2?'0%':'100%');
+          picture.setAttribute('role','img');
+          picture.setAttribute('aria-label',caption);
+          const label=document.createElement('figcaption');
+          label.textContent=caption;
+          item.append(picture,label);
+          gallery.appendChild(item);
+        });
+        cta.setAttribute('data-service-select',study.service);
+        caseDialog.showModal();
+      });
+    });
+
+    function closeDialog(){caseDialog.close();}
+    close.addEventListener('click',closeDialog);
+    caseDialog.addEventListener('click',function(event){
+      if(event.target===caseDialog){
+        const b=caseDialog.getBoundingClientRect();
+        if(event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom)closeDialog();
+      }
+    });
+    caseDialog.addEventListener('close',function(){if(opener)opener.focus();});
+    cta.addEventListener('click',function(){
+      if(select)select.value=cta.getAttribute('data-service-select');
+      closeDialog();
+    });
+  }
+})();
 
 
 /* 04 / Interactive Fibonacci SVG — driven by page scroll */
@@ -273,80 +320,3 @@ serviceDialog.addEventListener('click',event=>{
 
 
 
-/* First Project Program — reveal at section 02 */
-(function initFirstProjectProgram(){
-  const offerDialog=document.getElementById('first-project-dialog');
-  const offerForm=document.getElementById('first-project-form');
-  const offerClose=offerDialog?.querySelector('.first-project-close');
-  const triggerSection=document.getElementById('services');
-  if(!offerDialog||!offerForm||!offerClose||!triggerSection) return;
-
-  const companyInput=document.getElementById('first-project-company');
-  const showInput=document.getElementById('first-project-show');
-  let hasOpened=false;
-  let closeTimer=null;
-
-  function openOffer(){
-    if(hasOpened||offerDialog.open) return;
-    hasOpened=true;
-    offerDialog.showModal();
-    window.requestAnimationFrame(()=>{
-      window.requestAnimationFrame(()=>offerDialog.classList.add('is-visible'));
-    });
-  }
-
-  function closeOffer(){
-    if(!offerDialog.open) return;
-    offerDialog.classList.remove('is-visible');
-    window.clearTimeout(closeTimer);
-    closeTimer=window.setTimeout(()=>offerDialog.close(),420);
-  }
-
-  offerClose.addEventListener('click',closeOffer);
-  offerDialog.addEventListener('click',event=>{
-    if(event.target!==offerDialog) return;
-    const box=offerDialog.getBoundingClientRect();
-    if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom){
-      closeOffer();
-    }
-  });
-  offerDialog.addEventListener('cancel',event=>{
-    event.preventDefault();
-    closeOffer();
-  });
-  offerDialog.addEventListener('close',()=>offerDialog.classList.remove('is-visible'));
-
-  offerForm.addEventListener('submit',event=>{
-    event.preventDefault();
-    if(!offerForm.reportValidity()) return;
-
-    const company=companyInput.value.trim();
-    const show=showInput.value.trim();
-    const subject=`First Project Program - ${company} - ${show}`;
-    const body=[
-      'Hi ConceptStudio 89,',
-      '',
-      'I’m interested in the First Project Program.',
-      `Company: ${company}`,
-      `Show: ${show}`,
-      '',
-      'Please send me the next steps.'
-    ].join('\n');
-
-    window.location.href='mailto:conceptst89@gmail.com?subject='+
-      encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-  });
-
-  const observer=new IntersectionObserver(entries=>{
-    const entry=entries[0];
-    if(entry?.isIntersecting&&entry.intersectionRatio>=0.28){
-      observer.disconnect();
-      openOffer();
-    }
-  },{
-    threshold:[0,.28,.5],
-    rootMargin:'0px 0px -8% 0px'
-  });
-
-  observer.observe(triggerSection);
-})();
