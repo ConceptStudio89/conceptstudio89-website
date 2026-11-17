@@ -54,3 +54,65 @@
  .service-visual{aspect-ratio:5/4}
  .showcase-card-image{aspect-ratio:16/9}
 }
+
+/* Fictional product studies: distinct from real client portfolio */
+.concept-study-intro{
+  max-width:740px;
+  margin:0 0 30px;
+  color:#62625d;
+  font-size:16px;
+  line-height:1.65;
+}
+.concept-study-grid{align-items:start}
+.concept-study-card{
+  display:block;
+  cursor:default;
+}
+.concept-study-card .showcase-card-image{
+  background:#333833;
+  aspect-ratio:1200/630;
+  border:1px solid rgba(11,11,11,.09);
+}
+.concept-study-card .showcase-card-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.concept-study-card:hover .showcase-card-image img{transform:none}
+.concept-study-card .showcase-card-meta{
+  gap:10px;
+  align-items:center;
+}
+.concept-study-card .showcase-card-meta strong{
+  font-size:clamp(21px,2.1vw,30px);
+  letter-spacing:-.045em;
+}
+.concept-study-card .showcase-card-meta span{
+  font:10px/1.5 var(--mono);
+  text-align:right;
+}
+.concept-study-card>p{
+  max-width:570px;
+  font-size:14px;
+  line-height:1.65;
+  color:#50504b;
+  margin:15px 0 16px;
+}
+.concept-study-mark{
+  display:inline-block;
+  border:1px solid #9c9c95;
+  padding:7px 10px;
+  font:9px/1.35 var(--mono);
+  letter-spacing:.6px;
+  color:#5b5b55;
+}
+@media(max-width:580px){
+ .concept-study-card .showcase-card-meta{
+   flex-direction:column;
+   align-items:start;
+   gap:2px;
+ }
+ .concept-study-card .showcase-card-meta span{text-align:left}
+ .concept-study-intro{font-size:15px}
+}
