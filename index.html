@@ -245,8 +245,9 @@
   <div class="section-header"><span class="section-index">05 / START SOMETHING</span><span class="section-rule"></span><span class="section-side">New ideas welcome</span></div>
   <div class="contact-grid">
    <div class="contact-copy"><h2 id="contact-title">Have an idea?<br><em>Let’s give it form.</em></h2><p>Launching a brand, refreshing your identity or looking for a creative partner? Tell us what you have in mind.</p><a class="contact-mail" href="mailto:conceptst89@gmail.com">conceptst89@gmail.com <span aria-hidden="true">↗</span></a></div>
-   <form class="contact-form" id="contact-form">
-    <label for="contact-company">Your name / company</label><input id="contact-company" name="company" autocomplete="organization" required placeholder="Who are we designing for?">
+   <form class="contact-form" id="contact-form" method="post" action="https://formsubmit.co/ajax/conceptst89@gmail.com">
+    <label for="contact-company">Your name / company</label><input id="contact-company" name="company" autocomplete="organization" maxlength="120" required placeholder="Who are we designing for?">
+    <label for="contact-email">Your email address</label><input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="you@company.com">
     <label for="contact-service">What do you need?</label>
     <select id="contact-service" name="service" required>
      <option value="" disabled selected>Select a service</option>
@@ -256,9 +257,14 @@
      <option value="Creative partnership">Creative partnership</option>
      <option value="Something else">Something else</option>
     </select>
-    <label for="contact-brief">Your idea / brief</label><textarea id="contact-brief" name="brief" rows="4" placeholder="A few lines about your project…" required></textarea>
-    <button class="button button-dark" type="submit">Prepare inquiry email <span aria-hidden="true">↗</span></button>
-    <p class="form-note">This opens your email app with your project details ready to send.</p>
+    <label for="contact-brief">Your idea / brief</label><textarea id="contact-brief" name="brief" rows="4" maxlength="5000" placeholder="A few lines about your project…" required></textarea>
+    <div class="contact-honeypot" aria-hidden="true"><label for="contact-website">Leave this field empty</label><input id="contact-website" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+    <input type="hidden" name="_subject" value="New inquiry | ConceptStudio 89">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <button class="button button-dark" id="contact-submit" type="submit">Send project inquiry <span aria-hidden="true">↗</span></button>
+    <p class="form-feedback" id="contact-feedback" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+    <p class="form-note">Your message is sent from this page. No email application needed.</p>
    </form>
   </div>
  </section>
